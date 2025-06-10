@@ -1,0 +1,203 @@
+body {
+    background-color: #EEEEEE;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+    width: 100%;
+    height: 4rem;
+    background: #fdb710;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.imagemLogodaPrefeitura {
+    height: 3rem;
+    width: auto;
+}
+
+.textoDaBarra {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid transparent;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.textoDaBarra:hover {
+    border-bottom-color: #333;
+    color: #000;
+}
+
+.NomedaAplicação {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 7rem auto 2rem;
+    padding: 2rem;
+}
+
+.form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #fdb710;
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.radio-group label {
+    display: inline;
+    margin: 0;
+}
+
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
+.submit-btn {
+    background-color: #fdb710;
+    color: #333;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover:enabled {
+    background-color: #e5a50f;
+    color: #333;
+}
+
+.submit-btn:enabled{
+  color: #333;
+    background-color: #fdb710;
+}
+
+.submit-btn:disabled{
+    color: #ffffff; 
+    background-color: #70520d;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        align-items: flex-start;
+    }
+
+    .navbar-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .textoDaBarra {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+        margin-top: 9rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+}
+}

@@ -1,0 +1,201 @@
+body {
+  background-color: #EEEEEE;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  width: 100%;
+  height: 4rem;
+  background: #fdb710;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.imagemLogodaPrefeitura {
+  height: 3rem;
+  width: auto;
+}
+
+.textoDaBarraSub {
+  color: #333;
+  padding-left: 0.5rem;
+  padding-top: 0.3rem;
+  padding-right:  0.5rem;
+  background-color: #DC9B33;
+  font-size: 1.2rem;
+  border-radius: 20px ;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+  height: 100px;
+  width: 25px;
+}
+
+
+.textoDaBarra {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.textoDaBarra:hover {
+  border-bottom-color: #333;
+  color: #000;
+}
+
+.NomedaAplicação {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+.localdaImagem {
+  position: relative;
+  width: 80%;
+  max-width: 1200px;
+  margin: 8rem auto 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  min-height: 500px;
+}
+
+.divDaImagem {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.conteudoSobre {
+  width: 80%;
+  max-width: 1000px;
+  margin: 8rem auto 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.secaoSobre,
+.secaoGrupo {
+  margin-bottom: 2rem;
+}
+
+.secaoSobre h1,
+.secaoGrupo h2 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #fdb710;
+  padding-bottom: 0.5rem;
+}
+
+.secaoSobre p {
+  font-size: 1.1rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.secaoGrupo ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.secaoGrupo li {
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  color: #444444;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        align-items: flex-start;
+    }
+
+    .navbar-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .textoDaBarra {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+        margin-top: 9rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+ }
+}

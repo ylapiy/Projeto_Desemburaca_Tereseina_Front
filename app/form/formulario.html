@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Denúncia</title>
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="../../assets/logoPrefeitura.svg" alt="Logo da Prefeitura" class="imagemLogodaPrefeitura">
+            <span class="NomedaAplicação">| Denúncia de Buracos</span>
+        </div>
+        <div class="navbar-links">
+            <a href="../home/index.html"><span class="textoDaBarra">Inicio</span></a>
+            <a href="../serv/serv.html"><span class="textoDaBarra">Serviços</span></a>
+            <a href="../sobre/sobre.html"><span class="textoDaBarra">Saiba Mais</span></a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form class="form-container"  method="POST"  id="form-denuncia">
+            <h2>Formulário de Denúncia</h2>
+            
+            <div class="form-group">
+                <label for="location">Localização:</label>
+                <input type="text" id="location" name="location" placeholder="Digite o endereço do buraco" required>
+            </div>
+
+            <div class="form-group">
+                <label for="size">Tamanho do buraco:</label>
+                <select id="size" name="size" required>
+                    <option value="">Selecione o tamanho</option>
+                    <option value="small">Pequeno (até 30cm)</option>
+                    <option value="medium">Médio (30cm - 1m)</option>
+                    <option value="large">Grande (mais de 1m)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrição adicional:</label>
+                <textarea id="description" name="description" rows="4" placeholder="Descreva detalhes adicionais sobre o a localização do buraco"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Foto do buraco:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <label for="camera">Tirar Foto Agora:</label>
+                <input type="file" id="camera" name="camera" accept="image/*" capture="environment" style="display:none;">
+                <button type="button" onclick="document.getElementById('camera').click()">📷 Usar Câmera</button>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit">Enviar Denuncia</button>
+        </form>
+
+    </div>
+
+    <script sr c="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+    <script>
+
+        window.lat2 = null;
+        window.lon2 = null;
+        window.Data = null;
+        window.Foto = null;
+
+        /* script para verificar se a imagem tem tudo certinho, data, gps e depois se internet ta on ne,
+           agora se tu me perguntar, pq um site opção de selavar offline, eu te respondo, boa pergunta! Não mas, a
+           agora é serio, é pq mesmo sentdo um site agora isso foi pensado pra posteriomenter virar aplicativo
+           então na realidade faz sentido (eu acho) */
+        
+        document.getElementById('photo').addEventListener('change', function(event) {
+
+            const arquivoFoto = event.target.files[0];
+            if (!arquivoFoto) {return;  resetTodos()};
+            document.getElementById('camera').value = ""; 
+
+            resetTodos();
+            const butao = document.querySelector('.submit-btn');
+          
+                EXIF.getData(arquivoFoto, function() {
+                    const Metadados = EXIF.getAllTags(this);
+
+
+                    var lat2 = 0;
+                    var lon2 = 0;
+            
+                    const Data = Metadados.DateTimeOriginal;
+
+                    let possuiData = !!Data;
+                    let possuiGPS = Metadados.GPSLatitude && Metadados.GPSLongitude &&
+                        Array.isArray(Metadados.GPSLatitude) &&
+                        Array.isArray(Metadados.GPSLongitude);
+
+                    if (possuiData && possuiGPS) {
+                        try {
+                            var lat2 = TransformaCordenada(Metadados.GPSLatitude, Metadados.GPSLatitudeRef);
+                            var lon2 = TransformaCordenada(Metadados.GPSLongitude, Metadados.GPSLongitudeRef);
+                            
+                             window.lat2 = lat2;
+                             window.lon2 = lon2;
+                             window.Data = Data;
+                             window.Foto = arquivoFoto;
+
+                            verificaTeresina(lon2,lat2).then((estaDentro) => {
+                                if (estaDentro) {
+                                    if(navigator.onLine){
+                                        butao.disabled = false;
+                                         butao.textContent = "Enviar Denuncia"; 
+                                    }else{
+                                        butao.disabled = true;
+                                        butao.textContent = "Ative A interte para finalizar a denuncia"; }
+                                } else {
+                                    butao.disabled = true;
+                                    butao.textContent = `Imagem Invalida - Imagem Fora da Area de Teresina`;
+                                }
+                                }).catch((e) => {
+                                    butao.disabled = true;
+                                    butao.textContent = `Imagem Inválida -  LocalizaçãoIncerta`;
+                                });
+
+                           if(lat2 === null || lon2 === null){
+                            butao.disabled = true;
+                                 butao.textContent = `Imagem Invalida - Imagem Sem Dados De GPS`;
+                            }
+
+                            } catch (e) {
+                                butao.disabled = true;
+                                butao.textContent = `Imagem Inválida - Erro nos Dados de GPS`;}
+                             } else {
+                                butao.disabled = true;
+                                butao.textContent = possuiData
+                                ? `Imagem Inválida - Sem Dados de GPS`
+                                : `Imagem Inválida - Sem Dados de Data`;
+
+                }              
+            })
+        });
+        
+
+        document.getElementById('camera').addEventListener('change', function(event) {
+
+            const arquivoFoto = event.target.files[0];
+            if (!arquivoFoto) {return;  resetTodos()};
+            document.getElementById('photo').value = ""; 
+
+            resetTodos();
+            const butao = document.querySelector('.submit-btn');
+          
+                EXIF.getData(arquivoFoto, function() {
+                    const Metadados = EXIF.getAllTags(this);
+
+                    var lat2 = 0;
+                    var lon2 = 0;
+            
+                    const Data = Metadados.DateTimeOriginal;
+
+                    let possuiData = !!Data;
+                    let possuiGPS = Metadados.GPSLatitude && Metadados.GPSLongitude &&
+                        Array.isArray(Metadados.GPSLatitude) &&
+                        Array.isArray(Metadados.GPSLongitude);
+
+                    if (possuiData && possuiGPS) {
+                        try {
+                            var lat2 = TransformaCordenada(Metadados.GPSLatitude, Metadados.GPSLatitudeRef);
+                            var lon2 = TransformaCordenada(Metadados.GPSLongitude, Metadados.GPSLongitudeRef);
+                            
+                             window.lat2 = lat2;
+                             window.lon2 = lon2;
+                             window.Data = Data;
+                             window.Foto = arquivoFoto;
+
+                            verificaTeresina(lon2,lat2).then((estaDentro) => {
+                                if (estaDentro) {
+                                    if(navigator.onLine){
+                                        butao.disabled = false;
+                                         butao.textContent = "Enviar Denuncia"; 
+                                    }else{
+                                        butao.disabled = true;
+                                        butao.textContent = "Ative A interte para finalizar a denuncia"; }
+                                } else {
+                                    butao.disabled = true;
+                                    butao.textContent = `Imagem Invalida - Imagem Fora da Area de Teresina`;
+                                }
+                                }).catch((e) => {
+                                    butao.disabled = true;
+                                    butao.textContent = `Imagem Inválida -  LocalizaçãoIncerta`;
+                                });
+
+                           if(lat2 === null || lon2 === null){
+                            butao.disabled = true;
+                                 butao.textContent = `Imagem Invalida - Imagem Sem Dados De GPS`;
+                            }
+
+                            } catch (e) {
+                                butao.disabled = true;
+                                butao.textContent = `Imagem Inválida - Erro nos Dados de GPS`;}
+                             } else {
+                                butao.disabled = true;
+                                butao.textContent = possuiData
+                                ? `Imagem Inválida - Sem Dados de GPS`
+                                : `Imagem Inválida - Sem Dados de Data`;
+
+                }              
+            })
+        });
+
+        window.addEventListener('online', () => {
+            const butao = document.querySelector('.submit-btn');
+            butao.disabled = false;
+            butao.textContent = "Enviar Denuncia"; 
+        });
+        window.addEventListener('offline', () => {
+            const butao = document.querySelector('.submit-btn');
+            butao.disabled = true;
+            butao.textContent = "Ative A interte para finalizar a denuncia"; 
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+           const butao = document.querySelector('.submit-btn');
+           if(navigator.onLine){
+            butao.disabled = false;
+            butao.textContent = "Enviar Denuncia"; 
+           }else{
+            butao.disabled = true;
+            butao.textContent = "Ative A interte para finalizar a denuncia"; 
+           }
+        });
+
+ function TransformaCordenada(cordenadas, hemisferio,) {
+    const degrees = cordenadas[0].numerator / cordenadas[0].denominator;
+    const minutes = cordenadas[1].numerator / cordenadas[1].denominator;
+    const seconds = cordenadas[2].numerator / cordenadas[2].denominator;
+
+    if ([degrees, minutes, seconds].some(n => isNaN(n))) return null;
+
+    let decimal = degrees + minutes / 60 + seconds / 3600;
+    if (hemisferio === "S" || hemisferio === "W") {
+        decimal *= -1;
+    }
+
+    return decimal.toFixed(5); 
+}
+
+ function resetTodos() {
+    window.lat2 = null;
+    window.lon2 = null;
+    window.Data = null;
+    window.Foto = null;
+    const butao = document.querySelector('.submit-btn');
+    if (butao) {
+      butao.disabled = false;
+      butao.textContent = 'Enviar Denuncia';
+    }
+  }
+
+ async function verificaTeresina(longitude, latitude) {
+    try{
+    const resposta = await fetch('Teresina.geojson.json');
+    
+    if (!resposta.ok) {
+        console.error("Erro ao carregar Teresina");
+        return; 
+    }
+
+    const geojsonData = await resposta.json();
+    const ponto = turf.point([longitude, latitude]);
+    let dentro = false;
+
+    for (const feature of geojsonData.features) {
+      if (turf.booleanPointInPolygon(ponto, feature)) {
+        console.log("✅ Ponto válido dentro de Teresina");
+        dentro = true;
+        return true;
+        break;
+        }
+      }
+
+      if (!dentro) {
+        console.log("❌ Ponto fora de Teresina");
+        return false;
+      }
+
+    }catch (e){
+
+        console.log("Meu Deus, Meu senhor");
+
+    }
+    
+}
+
+ async function espera(longitude,latitude){
+     const EstaDentro = await verificaTeresina(longitude,latitude);
+     return  EstaDentro;
+}
+
+
+
+
+</script>
+<script src="OffLineTM.js"></script>
+
+</body>
+</html>

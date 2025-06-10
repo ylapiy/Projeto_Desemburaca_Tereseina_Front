@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncia de Buracos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="serv.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="../../assets/logoPrefeitura.svg" alt="Logo da Prefeitura" class="imagemLogodaPrefeitura">
+            <span class="NomedaAplicação">| Denúncia de Buracos</span>
+        </div>
+        <div class="navbar-links">
+            <a href="../form/formulario.html"><span class="textoDaBarraSub">Submeter</span></a>
+            <a href="../home/index.html"><span class="textoDaBarra">Inicio</span></a>
+            <a href="../sobre/sobre.html"><span class="textoDaBarra">Saiba Mais</span></a>
+        </div>
+    </nav>
+    
+    <div class="fluxo-container">
+  <div class="fluxo-card">
+    <i class="fas fa-database"></i>
+    <h3>Armazenamento</h3>
+    <p>Salvamos as denúncias feitas pelos cidadãos com segurança e organização.</p>
+  </div>
+  <div class="seta"><i class="fas fa-arrow-right"></i></div>
+
+  <div class="fluxo-card">
+    <i class="fas fa-microscope"></i>
+    <h3>Análise Técnica</h3>
+    <p>As imagens e dados enviados são analisados automaticamente para priorização.</p>
+  </div>
+  <div class="seta"><i class="fas fa-arrow-right"></i></div>
+
+  <div class="fluxo-card">
+    <i class="fas fa-paper-plane"></i>
+    <h3>Encaminhamento</h3>
+    <p>Encaminhamos as denúncias para a prefeitura de forma rápida e eficiente.</p>
+  </div>
+  <div class="seta"><i class="fas fa-arrow-right"></i></div>
+
+  <div class="fluxo-card">
+    <i class="fas fa-eye"></i>
+    <h3>Acompanhamento</h3>
+    <p>Permite aos cidadãos acompanhar o andamento da resolução dos problemas.</p>
+  </div>
+  <div class="seta"><i class="fas fa-arrow-right"></i></div>
+
+  <div class="fluxo-card">
+    <i class="fas fa-history"></i>
+    <h3>Histórico</h3>
+    <p>Visualize o histórico de buracos resolvidos e dados estatísticos da cidade.</p>
+  </div>
+</div>
+
+<div class="tabela">
+<h2>Lista de Denúncias</h2>
+<table id="tabelaDenuncias" border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Data</th>
+      <th>Categoria</th>
+      <th>Status</th>
+      <th>Observação</th>
+      <th>Imagem</th>
+      <th>Coordenada</th>
+      <th>Rua</th>
+      <th>Bairro</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+</div>
+
+<script>
+fetch('http://localhost:8080/Projeot-SQLdeBuracos-0.0.1-SNAPSHOT/tabela') 
+  .then(response => response.json())
+  .then(data => {
+    const tbody = document.querySelector("#tabelaDenuncias tbody");
+    data.forEach(registro => {
+      const linha = `
+        <tr>
+          <td>${registro.fid}</td>
+          <td>${registro.data}</td>
+          <td>${registro.categoria}</td>
+          <td>${registro.status}</td>
+          <td>${registro.observacao}</td>
+          <td>${registro.imagem}</td>
+          <td>${registro.geom}</td>
+          <td>${registro.rua}</td>
+          <td>${registro.bairro}</td>
+        </tr>
+      `;
+      tbody.innerHTML += linha;
+    });
+  });
+</script>
+</body>
+</html>
