@@ -56,7 +56,7 @@
 
     </div>
 
-    <script sr c="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
     <script>
 
@@ -255,37 +255,18 @@
   }
 
  async function verificaTeresina(longitude, latitude) {
-    try{
-    const resposta = await fetch('Teresina.geojson.json');
-    
-    if (!resposta.ok) {
-        console.error("Erro ao carregar Teresina");
-        return; 
-    }
 
-    const geojsonData = await resposta.json();
+ try {
     const ponto = turf.point([longitude, latitude]);
-    let dentro = false;
+    const feature = teresinaGeoJson.features[0];
+    const dentro = turf.booleanPointInPolygon(ponto, feature);
 
-    for (const feature of geojsonData.features) {
-      if (turf.booleanPointInPolygon(ponto, feature)) {
-        console.log("✅ Ponto válido dentro de Teresina");
-        dentro = true;
-        return true;
-        break;
-        }
-      }
-
-      if (!dentro) {
-        console.log("❌ Ponto fora de Teresina");
-        return false;
-      }
-
-    }catch (e){
-
-        console.log("Meu Deus, Meu senhor");
-
-    }
+    console.log(dentro ? "✅ Dentro" : "❌ Fora da área");
+    return dentro;
+  } catch (e) {
+    console.error("Erro em verificaTeresina:", e);
+    return false;
+  }
     
 }
 
@@ -293,11 +274,9 @@
      const EstaDentro = await verificaTeresina(longitude,latitude);
      return  EstaDentro;
 }
-
-
-
-
 </script>
+
+<script src="TeresinaPontos.js"></script>
 <script src="OffLineTM.js"></script>
 
 </body>
