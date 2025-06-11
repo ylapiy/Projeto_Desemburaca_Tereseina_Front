@@ -83,6 +83,7 @@ export function LeituraDefoto(Entrada){
                     var lon2 = 0;
             
                     const Data = Metadados.DateTimeOriginal;
+                    const NomeFoto = arquivoFoto.name;
 
                     let possuiData = !!Data;
                     let possuiGPS = Metadados.GPSLatitude && Metadados.GPSLongitude &&
@@ -98,6 +99,7 @@ export function LeituraDefoto(Entrada){
                              window.lon2 = lon2;
                              window.Data = Data;
                              window.Foto = arquivoFoto;
+                             window.Nome = NomeFoto;
 
                             verificaTeresina(lon2,lat2).then((estaDentro) => {
                                 if (estaDentro) {
@@ -152,6 +154,9 @@ export function resetTodos() {
     window.lon2 = null;
     window.Data = null;
     window.Foto = null;
+    window.Nome = null;
+    window.Bairro = null;
+    window.Rua = null;
     const butao = document.querySelector('.submit-btn');
     if (butao) {
       butao.disabled = false;
@@ -191,6 +196,9 @@ const endereco = Dados.address
 const Bairro = endereco.suburb || 'Bairro não encontrado'
 const Rua = endereco.road || 'Rua não encontrada'
 
+window.Bairro = Bairro;
+window.Rua = Rua;
+
 console.log('Rua:',Rua )
 console.log('Bairro',Bairro)
 
@@ -204,6 +212,7 @@ console.log('Erro ao se conectar a Api de reversão geografica : ',e )
 };
 
 export async function DriveUploader(Foto){
+
 
 const ImagemFoto = Foto
 const formData = new FormData()
@@ -221,24 +230,55 @@ console.log('Deu CERTO, OLHA O DRIVE')
 }
 
 
-}catch (e){
+}catch (e){console.log('Erro: ', e )}
+};
 
-console.log('Erro: ', e )
+export async function PostBancoDeDados(data,categoria,observacao,imagem,lon,lat,rua,bairro) {
 
+const dataFormatada = normalizarDataParaPostgres(data);
 
-
+if (!dataFormatada) {
+  reply.code(400).send({ error: 'Data inválida extraída da imagem.' });
+  return;
 }
 
 
+  const NovaEntrada = {
+
+    "data": dataFormatada,
+    "categoria": categoria,
+    "observacao": observacao,
+    "imagem": imagem,
+    "longitude": lon,
+    "latitude": lat,
+    "rua": rua,
+    "bairro": bairro
+  }
+
+  try {
+
+    const resposta = await fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/registro',{
+      method:'POST',headers : {'Content-Type' :'application/json'},
+      body: JSON.stringify(NovaEntrada)
+    })
+
+    if(!resposta.ok){console.log('Socorro MDS')}else{
+    console.log('Deu CERTO, OLHA O BANCO')
+    } 
+    
+
+
+  }catch(e){console.log('Erro:' ,e)}
 };
 
-export async function PostBancoDeDados () {
+function normalizarDataParaPostgres(dataString) {
+  if (!dataString) return null;
+  const corrigida = dataString.replace(/^(\d{4}):(\d{2}):(\d{2})/, '$1-$2-$3');
 
+  const data = new Date(corrigida);
 
-
-
-
-};
+  return data.toISOString().slice(0, 19).replace('T', ' ');
+}
 
 export async function GetBancoDeDados(){
 

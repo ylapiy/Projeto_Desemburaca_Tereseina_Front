@@ -51,7 +51,7 @@
                 <button type="button" onclick="document.getElementById('camera').click()">📷 Usar Câmera</button>
             </div>
 
-            <button type="button" class="submit-btn" id="submit">Enviar Denuncia</button>
+            <button class="submit-btn" id="submit">Enviar Denuncia</button>
             <div class="popupCarregamentoInternet"></div>
             <h2> Denuncia Salva </h2>
             <p> para finalizar o envio conecte a internet</p>
@@ -80,10 +80,17 @@
     então na realidade faz sentido (eu acho) 
     */
 
-    document.getElementById('submit').addEventListener('click', (Entrada) => {
+    document.getElementById('form-denuncia').addEventListener('submit', (Entrada) => {
+            Entrada.preventDefault()
             const arquivo = document.getElementById('photo');
             const camera = document.getElementById('camera');
-            const butao = document.getElementById('submit');
+            const butao = document.querySelector('.submit-btn');
+            const formulario = document.getElementById('form-denuncia')
+
+            const dados = Object.fromEntries(new FormData(formulario).entries());
+            var categoria = null
+
+            if(dados.size == "small"){categoria = 1}else{if(dados.size == "medium"){categoria = 2}else{if(dados.size == "large"){categoria = 3}}}
 
             console.log("Arquivo selecionado:", arquivo.files.length);
             console.log("Camera selecionada:", camera.files.length);
@@ -92,8 +99,13 @@
                 if(butao.textContent == "Enviar Denuncia"){
                     console.log('enviando denuncia')
                     console.log('Situação da conc:', window.esperandoConc)
-                    RevesaoGeografica(window.lon2,window.lat2)
-                    DriveUploader(window.Foto)
+                    RevesaoGeografica(window.lon2,window.lat2).then(() => {
+                    butao.disabled = true;
+                    butao.textContent = "Enviando dados, por favor aguarde..."
+                    console.log(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
+                    PostBancoDeDados(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
+                    DriveUploader(window.Foto).then(() => {butao.disabled = false; butao.textContent = "Enviar Denuncia"})
+                    })
                 }else{
                     window.esperandoConc = true;
                     console.log('salvando denuncia')
