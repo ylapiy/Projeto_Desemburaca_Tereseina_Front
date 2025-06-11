@@ -1,4 +1,4 @@
-function PreparandoEnvioOFF(){
+export function PreparandoEnvioOFF(){
 
     const formulario =  document.getElementById("form-denuncia");
 
@@ -33,7 +33,7 @@ function PreparandoEnvioOFF(){
     /* fazer aparecer o negocio de esperando internet...*/
 };
 
-function tentarEnviar(){
+export function tentarEnviar(){
     const requesicao = indexedDB.open("FormularioDB", 1);
 
     requesicao.onsuccess = function (e) {
@@ -68,7 +68,7 @@ function tentarEnviar(){
   };
 };
 
-function LeituraDefoto(Entrada){
+export function LeituraDefoto(Entrada){
  
             const arquivoFoto = Entrada.target.files[0];
             if (!arquivoFoto) {return;  resetTodos()};
@@ -132,7 +132,7 @@ function LeituraDefoto(Entrada){
             })
 };
 
-function TransformaCordenada(cordenadas, hemisferio,) {
+export function TransformaCordenada(cordenadas, hemisferio,) {
     const degrees = cordenadas[0].numerator / cordenadas[0].denominator;
     const minutes = cordenadas[1].numerator / cordenadas[1].denominator;
     const seconds = cordenadas[2].numerator / cordenadas[2].denominator;
@@ -147,7 +147,7 @@ function TransformaCordenada(cordenadas, hemisferio,) {
     return decimal.toFixed(5); 
 };
 
-function resetTodos() {
+export function resetTodos() {
     window.lat2 = null;
     window.lon2 = null;
     window.Data = null;
@@ -159,7 +159,7 @@ function resetTodos() {
     }
 };
 
-async function verificaTeresina(longitude, latitude) {
+export async function verificaTeresina(longitude, latitude) {
 
     try {
     const ponto = turf.point([longitude, latitude]);
@@ -174,3 +174,77 @@ async function verificaTeresina(longitude, latitude) {
     }
     
 };
+
+export async function RevesaoGeografica(lon, lat){
+
+const API_KEY = 'pk.7ac70b80805183e2466b163c071075dc'
+const url = `https://us1.locationiq.com/v1/reverse.php?key=${API_KEY}&lat=${lat}&lon=${lon}&format=json`;
+
+try{
+const resposta = await fetch(url, { headers: {'User-Agent': 'GeoAPI/1.0 (browser)'}})
+
+if(!resposta.ok){throw new Error ('Reversão geografica eu vou lhe pegar')}
+
+const Dados = await resposta.json()
+const endereco = Dados.address
+
+const Bairro = endereco.suburb || 'Bairro não encontrado'
+const Rua = endereco.road || 'Rua não encontrada'
+
+console.log('Rua:',Rua )
+console.log('Bairro',Bairro)
+
+}catch(e){
+
+console.log('Erro ao se conectar a Api de reversão geografica : ',e )
+
+}
+
+
+};
+
+export async function DriveUploader(Foto){
+
+const ImagemFoto = Foto
+const formData = new FormData()
+
+formData.append('file',ImagemFoto)
+try{
+const resposta = await fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/upload',{
+  method:'POST',
+  body:formData
+})
+
+if(!resposta.ok){console.log('Socorro MDS')}else{
+
+console.log('Deu CERTO, OLHA O DRIVE')
+}
+
+
+}catch (e){
+
+console.log('Erro: ', e )
+
+
+
+}
+
+
+};
+
+export async function PostBancoDeDados () {
+
+
+
+
+
+};
+
+export async function GetBancoDeDados(){
+
+
+
+};
+
+
+

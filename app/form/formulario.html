@@ -55,13 +55,17 @@
             <div class="popupCarregamentoInternet"></div>
             <h2> Denuncia Salva </h2>
             <p> para finalizar o envio conecte a internet</p>
+            <button type="button"> cancelar envio </button>
         </form>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+<script src="TeresinaPontos.js"></script> 
+<script type="module">
+
+    import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados, GetBancoDeDados} from './FuncoesPrincipais.js'
 
     window.lat2 = null;
     window.lon2 = null;
@@ -88,7 +92,8 @@
                 if(butao.textContent == "Enviar Denuncia"){
                     console.log('enviando denuncia')
                     console.log('Situação da conc:', window.esperandoConc)
-                    /* enviar pra o back processar, so fazer amanha de manha*/
+                    RevesaoGeografica(window.lon2,window.lat2)
+                    DriveUploader(window.Foto)
                 }else{
                     window.esperandoConc = true;
                     console.log('salvando denuncia')
@@ -104,7 +109,7 @@
         
     document.getElementById('photo').addEventListener('change',  (Entrada) => {
             document.getElementById('camera').value = ""; 
-            LeituraDefoto(Entrada)  
+             LeituraDefoto(Entrada)  
         });
         
     document.getElementById('camera').addEventListener('change', (Entrada) => {
@@ -135,10 +140,5 @@
         });
 
 </script>
-
-<script src="FunçoesPrincipais.js"></script>
-<script src="FunçoesConcecaoApi.js"
-<script src="TeresinaPontos.js"></script>
-
 </body>
 </html>
