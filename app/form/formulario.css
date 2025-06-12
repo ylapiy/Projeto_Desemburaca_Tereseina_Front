@@ -158,10 +158,11 @@ body {
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
+        flex-direction: row;
         height: auto;
         padding: 1rem;
         align-items: flex-start;
+        flex-wrap: wrap;
     }
 
     .navbar-brand {
@@ -171,7 +172,7 @@ body {
     }
 
     .navbar-links {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
         width: 100%;
         margin-top: 1rem;
@@ -216,17 +217,4 @@ text-align: center;
 padding: 0 30px 30px;
 color: #333;
 
-}
-
-.popupValidaçãoFoto{
-
-
-
-}
-
-.popupButão{
-
-
-
-    
 }

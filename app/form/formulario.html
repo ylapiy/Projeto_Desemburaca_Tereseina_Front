@@ -40,7 +40,7 @@
 
             <div class="form-group">
                 <label for="description">Descrição adicional:</label>
-                <textarea id="description" name="description" rows="4" placeholder="Descreva detalhes adicionais sobre o a localização do buraco"></textarea>
+                <textarea id="description" name="description" rows="4" placeholder="Descreva detalhes adicionais sobre o a localização do buraco" required></textarea>
             </div>
 
             <div class="form-group">
@@ -61,34 +61,31 @@
 <script src="TeresinaPontos.js"></script> 
 <script type="module">
 
-    import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados, GetBancoDeDados,loopDeEnvio} from './FuncoesPrincipais.js'
+import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados, GetBancoDeDados,loopDeAnim} from './FuncoesPrincipais.js'
 
-    window.lat2 = null;
-    window.lon2 = null;
-    window.Data = null;
-    window.Foto = null;
-    window.Rua = null;
-    window.Bairro = null;
-    window.esperandoConc = false;
+window.lat2 = null;
+window.lon2 = null;
+window.Data = null;
+window.Foto = null;
+window.Rua = null;
+window.Bairro = null;
+window.animar = true;
+window.timeoutAnimacao = null;
 
-    /* 
-    script para verificar se a imagem tem tudo certinho, data, gps e depois se internet ta on ne,
+/*  script para verificar se a imagem tem tudo certinho, data, gps e depois se internet ta on ne,
     agora se tu me perguntar, pq um site opção de selavar offline, eu te respondo, boa pergunta! Não mas, a
     agora é serio, é pq mesmo sentdo um site agora isso foi pensado pra posteriomenter virar aplicativo
-    então na realidade faz sentido (eu acho) 
-    */
+    então na realidade faz sentido (eu acho) */
 
-    document.getElementById('form-denuncia').addEventListener('submit', (Entrada) => {
+document.getElementById('form-denuncia').addEventListener('submit', (Entrada) => {
             Entrada.preventDefault()
             const arquivo = document.getElementById('photo');
             const camera = document.getElementById('camera');
             const butao = document.querySelector('.submit-btn');
             const formulario = document.getElementById('form-denuncia')
-
-            const dados = Object.fromEntries(new FormData(formulario).entries());
             var categoria = null
 
-            if(dados.size == "small"){categoria = 1}else{if(dados.size == "medium"){categoria = 2}else{if(dados.size == "large"){categoria = 3}}}
+            if(formulario.size.value == "small"){categoria = 1}else{if(formulario.size.value == "medium"){categoria = 2}else{if(formulario.size.value== "large"){categoria = 3}}}
 
             console.log("Arquivo selecionado:", arquivo.files.length);
             console.log("Camera selecionada:", camera.files.length);
@@ -96,24 +93,32 @@
             if(arquivo.files.length || camera.files.length){
                 if(butao.textContent == "Enviar Denuncia"){
                     console.log('enviando denuncia')
+                    butao.textcontent = "Enviando Denuncia, aguarde"
                     console.log('Situação da conc:', window.esperandoConc)
-                    RevesaoGeografica(window.lon2,window.lat2).then(() => {
-                    
+                    butao.disabled = true; 
 
-                    butao.disabled = true;
-                    console.log(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
-                    PostBancoDeDados(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
-                    DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia"}) 
+                    RevesaoGeografica(window.lon2,window.lat2).then(() => {
+                    butao.disabled = true; 
+                    console.log(window.Data,categoria,formulario.description.value,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
+                    PostBancoDeDados(window.Data,categoria,formulario.description.value,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
+                    DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textcontent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');}) 
 
                     var contador = 0
-                    loopDeEnvio(contador)  
+                    loopDeAnim(contador,"Enviando Denuncia, aguarde") 
+
                     })
 
                 }else{
                     window.esperandoConc = true;
+                    butao.disabled = true;
                     console.log('salvando denuncia')
                     console.log('Situação da conc:', window.esperandoConc)
-                    /*PreparandoEnvioOFF();*/
+
+                    PreparandoEnvioOFF()
+
+                    var contador = 0
+                    loopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
+                        
                 }
 
             }else{
@@ -122,29 +127,67 @@
             }
         });
         
-    document.getElementById('photo').addEventListener('change',  (Entrada) => {
+document.getElementById('photo').addEventListener('change', (Entrada) => {
             document.getElementById('camera').value = ""; 
              LeituraDefoto(Entrada)  
         });
         
-    document.getElementById('camera').addEventListener('change', (Entrada) => {
+document.getElementById('camera').addEventListener('change', (Entrada) => {
             document.getElementById('photo').value = ""; 
             LeituraDefoto(Entrada)
         });
 
-    window.addEventListener('online', () => {
+window.addEventListener('online', () => {
+            const arquivo = document.getElementById('photo');
+            const camera = document.getElementById('camera');
+            const formulario = document.getElementById('form-denuncia')
             const butao = document.querySelector('.submit-btn');
-            butao.textContent = "Enviar Denuncia"; 
-           /* if(window.esperandoConc == true){
-            tentarEnviar();
-            } */
+            
+            window.animar = false
+            if (window.timeoutAnimacao) {
+             clearTimeout(window.timeoutAnimacao); 
+             window.timeoutAnimacao = null;         
+            }
+
+            const dados = Object.fromEntries(new FormData(formulario).entries());
+            var categoria = null
+            if(dados.size == "small"){categoria = 1}else{if(dados.size == "medium"){categoria = 2}else{if(dados.size == "large"){categoria = 3}}}
+
+            if (window.esperandoConc === true) {
+
+            window.esperandoConc = false
+            
+            try {
+            window.animar = true
+            butao.disabled = true;
+                var contador = 0
+                loopDeAnim(contador,"Enviando Denuncia, aguarde")  
+            RevesaoGeografica(window.lon2,window.lat2).then(() => {
+                console.log(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
+                PostBancoDeDados(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
+
+                DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');}) 
+             })
+
+            } catch (erro) {
+
+            console.error(erro);
+            }
+
+            butao.textContent = "Enviar Denuncia";
             window.esperandoConc = false;
+            }
         });
-    window.addEventListener('offline', () => {
+window.addEventListener('offline', () => {
             const butao = document.querySelector('.submit-btn');
             butao.textContent = "Salvar Denuncia"; 
         });
-    document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('onload', () =>{
+    if(navigator.online){
+    tentarEnviar();
+    }
+})
+document.addEventListener('DOMContentLoaded', () => {
            const butao = document.querySelector('.submit-btn');
            if(navigator.onLine){
             Window.esperandoConc = false;

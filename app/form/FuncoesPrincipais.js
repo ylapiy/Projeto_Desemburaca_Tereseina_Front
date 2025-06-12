@@ -1,17 +1,19 @@
 export function PreparandoEnvioOFF(){
 
     const formulario =  document.getElementById("form-denuncia");
+    var categoria = null
+    if(formulario.size.value == "small"){categoria = 1}else{if(formulario.size.value == "medium"){categoria = 2}else{if(formulario.size.value == "large"){categoria = 3}}}
 
     const dadosAseremSalvos = {
         
      /* localizao ainda sera usado para provavelmente para colocar o nome da imagem */
-     localizacao: formulario.location.value,
-     tamanho: formulario.size.value,
-     observacao: formulario.description.value,
-     lat: window.lat2,
-     lon: window.lon2,
      data: window.Data,
-    
+     categoria: categoria,
+     observacao: formulario.description.value,
+     nome : window.Nome,
+     lat: window.lon2,
+     lon: window.lat2,
+  
     };
 
     const Imagem = window.Foto;
@@ -30,7 +32,8 @@ export function PreparandoEnvioOFF(){
     };
 
     console.log("🔁 Armazenando denúncia offline...");
-    /* fazer aparecer o negocio de esperando internet...*/
+    console.log("Dados :", dadosAseremSalvos)
+
 };
 
 export function tentarEnviar(){
@@ -180,33 +183,33 @@ export async function verificaTeresina(longitude, latitude) {
     
 };
 
-export function loopDeEnvio(contador){
+export function loopDeAnim(contador,texto){
                      const butao = document.querySelector('.submit-btn');
-                     if(butao.disabled == false){butao.textContent = "Enviar Denúncia";return;}
+                     if(!window.animar || butao.disabled == false){butao.textContent = "Enviar Denúncia";return;}
 
                      switch (contador){
                         case 0 :
-                        butao.textContent = "Enviando Denuncia, aguarde"
+                        butao.textContent = texto+""
                         contador++
                         console.log(contador)
                         break;
                         case 1 :
-                        butao.textContent = "Enviando Denuncia, aguarde."
+                        butao.textContent = texto+"."
                         contador++
                         console.log(contador)
                         break;
                         case 2 :
-                        butao.textContent = "Enviando Denuncia, aguarde.."
+                        butao.textContent = texto+".."
                         contador++
                         console.log(contador)
                         break;
                         case 3 :
-                        butao.textContent = "Enviando Denuncia, aguarde..."
+                        butao.textContent = texto+"..."
                         contador = 0
                         console.log(contador)
                         break;
-                    }setTimeout(() => loopDeEnvio(contador), 1500)
-                  
+                    }window.timeoutAnimacao = setTimeout(() => loopDeAnim(contador,texto), 1500)
+                    
 };
 
 export async function RevesaoGeografica(lon, lat){

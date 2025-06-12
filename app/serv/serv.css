@@ -169,11 +169,12 @@ a {
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
+   .navbar {
+        flex-direction: row;
         height: auto;
         padding: 1rem;
         align-items: flex-start;
+        flex-wrap: wrap;
     }
 
     .navbar-brand {
@@ -183,7 +184,7 @@ a {
     }
 
     .navbar-links {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
         width: 100%;
         margin-top: 1rem;
@@ -211,5 +212,5 @@ a {
     .submit-btn {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
- }
+}
 }
