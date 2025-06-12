@@ -52,10 +52,6 @@
             </div>
 
             <button class="submit-btn" id="submit">Enviar Denuncia</button>
-            <div class="popupCarregamentoInternet"></div>
-            <h2> Denuncia Salva </h2>
-            <p> para finalizar o envio conecte a internet</p>
-            <button type="button"> cancelar envio </button>
         </form>
 
     </div>
@@ -65,12 +61,14 @@
 <script src="TeresinaPontos.js"></script> 
 <script type="module">
 
-    import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados, GetBancoDeDados} from './FuncoesPrincipais.js'
+    import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados, GetBancoDeDados,loopDeEnvio} from './FuncoesPrincipais.js'
 
     window.lat2 = null;
     window.lon2 = null;
     window.Data = null;
     window.Foto = null;
+    window.Rua = null;
+    window.Bairro = null;
     window.esperandoConc = false;
 
     /* 
@@ -100,12 +98,17 @@
                     console.log('enviando denuncia')
                     console.log('Situação da conc:', window.esperandoConc)
                     RevesaoGeografica(window.lon2,window.lat2).then(() => {
+                    
+
                     butao.disabled = true;
-                    butao.textContent = "Enviando dados, por favor aguarde..."
                     console.log(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
                     PostBancoDeDados(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
-                    DriveUploader(window.Foto).then(() => {butao.disabled = false; butao.textContent = "Enviar Denuncia"})
+                    DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia"}) 
+
+                    var contador = 0
+                    loopDeEnvio(contador)  
                     })
+
                 }else{
                     window.esperandoConc = true;
                     console.log('salvando denuncia')

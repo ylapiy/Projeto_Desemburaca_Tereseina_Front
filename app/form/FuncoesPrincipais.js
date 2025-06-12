@@ -180,6 +180,35 @@ export async function verificaTeresina(longitude, latitude) {
     
 };
 
+export function loopDeEnvio(contador){
+                     const butao = document.querySelector('.submit-btn');
+                     if(butao.disabled == false){butao.textContent = "Enviar Denúncia";return;}
+
+                     switch (contador){
+                        case 0 :
+                        butao.textContent = "Enviando Denuncia, aguarde"
+                        contador++
+                        console.log(contador)
+                        break;
+                        case 1 :
+                        butao.textContent = "Enviando Denuncia, aguarde."
+                        contador++
+                        console.log(contador)
+                        break;
+                        case 2 :
+                        butao.textContent = "Enviando Denuncia, aguarde.."
+                        contador++
+                        console.log(contador)
+                        break;
+                        case 3 :
+                        butao.textContent = "Enviando Denuncia, aguarde..."
+                        contador = 0
+                        console.log(contador)
+                        break;
+                    }setTimeout(() => loopDeEnvio(contador), 1500)
+                  
+};
+
 export async function RevesaoGeografica(lon, lat){
 
 const API_KEY = 'pk.7ac70b80805183e2466b163c071075dc'
