@@ -30,6 +30,7 @@ body {
 .navbar-links {
     display: flex;
     gap: 3rem;
+    
 }
 
 .imagemLogodaPrefeitura {
@@ -45,6 +46,8 @@ body {
     border-bottom: 2px solid transparent;
     margin: 0;
     transition: all 0.3s ease;
+    
+
 }
 
 .textoDaBarra:hover {

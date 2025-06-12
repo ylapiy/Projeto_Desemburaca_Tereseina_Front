@@ -13,9 +13,9 @@
             <span class="NomedaAplicação">| Denúncia de Buracos</span>
         </div>
         <div class="navbar-links">
-            <a href="../home/index.html"><span class="textoDaBarra">Inicio</span></a>
-            <a href="../serv/serv.html"><span class="textoDaBarra">Serviços</span></a>
-            <a href="../sobre/sobre.html"><span class="textoDaBarra">Saiba Mais</span></a>
+            <a href="../home/index.html" style="text-decoration: none"><span class="textoDaBarra">Inicio</span></a>
+            <a href="../serv/serv.html" style="text-decoration: none"><span class="textoDaBarra">Serviços</span></a>
+            <a href="../sobre/sobre.html" style="text-decoration: none"><span class="textoDaBarra">Saiba Mais</span></a>
         </div>
     </nav>
 
@@ -61,7 +61,7 @@
 <script src="TeresinaPontos.js"></script> 
 <script type="module">
 
-import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados, GetBancoDeDados,loopDeAnim} from './FuncoesPrincipais.js'
+import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim} from './FuncoesPrincipais.js'
 
 window.lat2 = null;
 window.lon2 = null;
@@ -114,7 +114,6 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     console.log('Situação da conc:', window.esperandoConc)
 
                     PreparandoEnvioOFF()
-                    tentarEnviar()
 
                     var contador = 0
                     loopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
@@ -160,11 +159,7 @@ window.addEventListener('online', () => {
             butao.disabled = true;
                 var contador = 0
                 loopDeAnim(contador,"Enviando Denuncia, aguarde")  
-                RevesaoGeografica(window.lon2,window.lat2).then(() => {
-                console.log(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
-                PostBancoDeDados(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
-                DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');}) 
-             })
+                tentarEnviar();
 
             } catch (erro) {
 
@@ -180,8 +175,8 @@ window.addEventListener('offline', () => {
             butao.textContent = "Salvar Denuncia"; 
         });
 window.addEventListener('onload', () =>{
-    tentarEnviar();
-})
+            /*tentarEnviar();*/
+        })
 document.addEventListener('DOMContentLoaded', () => {
            const butao = document.querySelector('.submit-btn');
            if(navigator.onLine){

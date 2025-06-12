@@ -11,8 +11,8 @@ export function PreparandoEnvioOFF(){
      categoria: categoria,
      observacao: formulario.description.value,
      nome : window.Nome,
-     lat: window.lon2,
-     lon: window.lat2,
+     lat: window.lat2,
+     lon: window.lon2,
   
     };
 
@@ -39,35 +39,52 @@ export function PreparandoEnvioOFF(){
 
 export function tentarEnviar(){
     const requesicao = indexedDB.open("FormularioDB", 1);
+    const butao = document.querySelector('.submit-btn');
 
     requesicao.onsuccess = function (e) {
     const db = e.target.result;
     const texto = db.transaction("FormOFF", "readwrite");
     const salvo = texto.objectStore("FormOFF");
 
-    const Dados = salvo.get("SalvalmentoOFF");
+    const Carregamento = salvo.get("SalvalmentoOFF");
 
-    Dados.onsuccess = function () {
-      const resultado = Dados.result;
+    Carregamento.onsuccess = function () {
+      const resultado = Carregamento.result;
 
       if (resultado) {
         console.log("🔁 Dados offline recuperados:", resultado);
+        console.log("dados :", 
+        resultado.Dados.data,
+        resultado.Dados.categoria,
+        resultado.Dados.observacao,
+        resultado.Dados.nome,
+        resultado.Dados.lon,
+        resultado.Dados.lat,
+        resultado.Dados.Bairro,
+        resultado.Dados.Rua
+        );
 
         window.dadosOfflineRecuperados = resultado;
 
         /*puxar as apis aqui e ai dale*/
+        RevesaoGeografica(resultado.Dados.lon,resultado.Dados.lat).then(() => {
+        console.log(window.Bairro,window.Rua)
+        PostBancoDeDados(resultado.Dados.data,resultado.Dados.categoria,resultado.Dados.observacao,resultado.Dados.nome,resultado.Dados.lon,resultado.Dados.lat,window.Bairro,window.Rua) 
+        DriveUploader(resultado.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');})
+        })
 
         const limpeza = salvo.delete("SalvalmentoOFF");
         limpeza.onsuccess = function () {
           console.log("🧹 Dados offline apagados com sucesso.");
         };
         limpeza.onerror = function () {
-          console.warn("⚠️ Erro ao tentar apagar os dados offline.");
+        console.warn("⚠️ Erro ao tentar apagar os dados offline.");
         };
 
       } else {
         console.log("ℹ️ Nenhum dado offline encontrado.");
       }
+
     };
   };
 };
@@ -313,11 +330,6 @@ function normalizarDataParaPostgres(dataString) {
   return data.toISOString().slice(0, 19).replace('T', ' ');
 }
 
-export async function GetBancoDeDados(){
-
-
-
-};
 
 
 
