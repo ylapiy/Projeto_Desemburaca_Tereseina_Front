@@ -34,6 +34,7 @@ export function PreparandoEnvioOFF(){
     console.log("🔁 Armazenando denúncia offline...");
     console.log("Dados :", dadosAseremSalvos)
 
+    Window.DadosSalvos = dadosAseremSalvos
 };
 
 export function tentarEnviar(){
@@ -41,7 +42,7 @@ export function tentarEnviar(){
 
     requesicao.onsuccess = function (e) {
     const db = e.target.result;
-    const texto = db.transaction("FormOFF", "readonly");
+    const texto = db.transaction("FormOFF", "readwrite");
     const salvo = texto.objectStore("FormOFF");
 
     const Dados = salvo.get("SalvalmentoOFF");
@@ -153,13 +154,13 @@ export function TransformaCordenada(cordenadas, hemisferio,) {
 };
 
 export function resetTodos() {
-    window.lat2 = null;
-    window.lon2 = null;
-    window.Data = null;
-    window.Foto = null;
-    window.Nome = null;
-    window.Bairro = null;
-    window.Rua = null;
+  window.lat2 = null;
+  window.lon2 = null;
+  window.Data = null;
+  window.Foto = null;
+  window.Rua = null;
+  window.Bairro = null;
+  window.timeoutAnimacao = null;
     const butao = document.querySelector('.submit-btn');
     if (butao) {
       butao.disabled = false;
@@ -185,7 +186,7 @@ export async function verificaTeresina(longitude, latitude) {
 
 export function loopDeAnim(contador,texto){
                      const butao = document.querySelector('.submit-btn');
-                     if(!window.animar || butao.disabled == false){butao.textContent = "Enviar Denúncia";return;}
+                     if(butao.disabled == false){butao.textContent = "Enviar Denúncia";return;}
 
                      switch (contador){
                         case 0 :

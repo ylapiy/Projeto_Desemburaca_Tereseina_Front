@@ -69,7 +69,6 @@ window.Data = null;
 window.Foto = null;
 window.Rua = null;
 window.Bairro = null;
-window.animar = true;
 window.timeoutAnimacao = null;
 
 /*  script para verificar se a imagem tem tudo certinho, data, gps e depois se internet ta on ne,
@@ -115,6 +114,7 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     console.log('Situação da conc:', window.esperandoConc)
 
                     PreparandoEnvioOFF()
+                    tentarEnviar()
 
                     var contador = 0
                     loopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
@@ -142,8 +142,7 @@ window.addEventListener('online', () => {
             const camera = document.getElementById('camera');
             const formulario = document.getElementById('form-denuncia')
             const butao = document.querySelector('.submit-btn');
-            
-            window.animar = false
+        
             if (window.timeoutAnimacao) {
              clearTimeout(window.timeoutAnimacao); 
              window.timeoutAnimacao = null;         
@@ -158,14 +157,12 @@ window.addEventListener('online', () => {
             window.esperandoConc = false
             
             try {
-            window.animar = true
             butao.disabled = true;
                 var contador = 0
                 loopDeAnim(contador,"Enviando Denuncia, aguarde")  
-            RevesaoGeografica(window.lon2,window.lat2).then(() => {
+                RevesaoGeografica(window.lon2,window.lat2).then(() => {
                 console.log(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
                 PostBancoDeDados(window.Data,categoria,dados.description,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
-
                 DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');}) 
              })
 
@@ -183,9 +180,7 @@ window.addEventListener('offline', () => {
             butao.textContent = "Salvar Denuncia"; 
         });
 window.addEventListener('onload', () =>{
-    if(navigator.online){
     tentarEnviar();
-    }
 })
 document.addEventListener('DOMContentLoaded', () => {
            const butao = document.querySelector('.submit-btn');
