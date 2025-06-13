@@ -20,6 +20,20 @@
     </nav>
 
     <div class="container">
+
+        <div class="fundoescuro">
+        <div class ="popupenvio">
+            <H2>Denuncia enviada com sucesso!</H2>
+            <button class="fechar" id="fecharenvio">X</button>
+        </div>
+        <div class="popupfaltaImage">
+            <h1>Denuncia sem foto!</h1>
+            <H2>É necessário uma foto colocada junto do envio, por favor use uma das duas opções disponíveis.</H2>
+            <button class="fechar" id="fecharimagem">X</button>
+        </div>
+        </div>
+
+
         <form class="form-container" id="form-denuncia">
             <h2>Formulário de Denúncia</h2>
             
@@ -44,11 +58,11 @@
             </div>
 
             <div class="form-group">
-                <label for="photo">Foto do buraco:</label>
+                <label for="photo">Foto do buraco :</label>
                 <input type="file" id="photo" name="photo" accept="image/*">
-                <label for="camera">Tirar Foto Agora:</label>
+                <label for="camera">Tirar foto agora :</label>
                 <input type="file" id="camera" name="camera" accept="image/*" capture="environment" style="display:none;">
-                <button type="button" onclick="document.getElementById('camera').click()">📷 Usar Câmera</button>
+                <button type="button" id="iconecamera" onclick="document.getElementById('camera').click()">📷 Usar Câmera</button>
             </div>
 
             <button class="submit-btn" id="submit">Enviar Denuncia</button>
@@ -62,6 +76,8 @@
 <script type="module">
 
 import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim} from './FuncoesPrincipais.js'
+
+
 
 window.lat2 = null;
 window.lon2 = null;
@@ -100,7 +116,12 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     butao.disabled = true; 
                     console.log(window.Data,categoria,formulario.description.value,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua)
                     PostBancoDeDados(window.Data,categoria,formulario.description.value,window.Nome,window.lon2,window.lat2,window.Bairro,window.Rua) 
-                    DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textcontent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');}) 
+                    DriveUploader(window.Foto).then(() => {butao.disabled = false;butao.textcontent = "Enviar Denúncia";
+                    document.querySelector('.popupenvio').style.visibility = 'visible';
+                    document.querySelector('.popupenvio').style.display = 'flex';
+                    document.querySelector('.fundoescuro').style.visibility = 'visible';
+                    document.querySelector('.fundoescuro').style.display = 'flex';
+                    ;}) 
 
                     var contador = 0
                     loopDeAnim(contador,"Enviando Denuncia, aguarde") 
@@ -121,20 +142,42 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                 }
 
             }else{
-                alert('É necessário uma foto colocada junto do envio, por favor use uma das opções disponíveis.');
+                document.querySelector('.popupfaltaImage').style.visibility = 'visible';
+                document.querySelector('.popupfaltaImage').style.display = 'flex';
+                document.querySelector('.fundoescuro').style.visibility = 'visible';
+                document.querySelector('.fundoescuro').style.display = 'flex';
                 return;
             }
         });
         
 document.getElementById('photo').addEventListener('change', (Entrada) => {
-            document.getElementById('camera').value = ""; 
+             const camera = document.getElementById('iconecamera')
+             camera.innerText =  "📷 Usar Câmera"
+             document.getElementById('camera').value = ""; 
              LeituraDefoto(Entrada)  
         });
         
 document.getElementById('camera').addEventListener('change', (Entrada) => {
+            const camera = document.getElementById('iconecamera')
+            camera.innerText =  "📷 Usar Câmera - ✔️ "
             document.getElementById('photo').value = ""; 
             LeituraDefoto(Entrada)
         });
+
+document.getElementById('fecharenvio').addEventListener('click',() =>{
+    document.querySelector('.popupenvio').style.visibility = 'hidden';
+    document.querySelector('.popupenvio').style.display = 'none';
+    document.querySelector('.fundoescuro').style.visibility = 'hidden';
+    document.querySelector('.fundoescuro').style.display = 'hidden';
+})
+
+document.getElementById('fecharimagem').addEventListener('click',() =>{
+    document.querySelector('.popupfaltaImage').style.visibility = 'hidden';
+    document.querySelector('.popupfaltaImage').style.display = 'none';
+    document.querySelector('.fundoescuro').style.visibility = 'hidden';
+    document.querySelector('.fundoescuro').style.display = 'hidden';
+})
+
 
 window.addEventListener('online', () => {
             const arquivo = document.getElementById('photo');

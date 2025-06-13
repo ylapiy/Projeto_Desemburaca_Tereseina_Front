@@ -70,7 +70,12 @@ export function tentarEnviar(){
         RevesaoGeografica(resultado.Dados.lon,resultado.Dados.lat).then(() => {
         console.log(window.Bairro,window.Rua)
         PostBancoDeDados(resultado.Dados.data,resultado.Dados.categoria,resultado.Dados.observacao,resultado.Dados.nome,resultado.Dados.lon,resultado.Dados.lat,window.Bairro,window.Rua) 
-        DriveUploader(resultado.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia";alert('Denuncia Enviada com sucesso.');})
+        DriveUploader(resultado.Foto).then(() => {butao.disabled = false;butao.textContent = "Enviar Denúncia";
+        document.querySelector('.popupenvio').style.visibility = 'visible';
+        document.querySelector('.popupenvio').style.display = 'flex';
+        document.querySelector('.fundoescuro').style.visibility = 'visible';
+        document.querySelector('.fundoescuro').style.display = 'flex';
+        })
         })
 
         const limpeza = salvo.delete("SalvalmentoOFF");
@@ -292,8 +297,7 @@ if (!dataFormatada) {
   return;
 }
 
-
-  const NovaEntrada = {
+const NovaEntrada = {
 
     "data": dataFormatada,
     "categoria": categoria,
@@ -303,7 +307,7 @@ if (!dataFormatada) {
     "latitude": lat,
     "rua": rua,
     "bairro": bairro
-  }
+}
 
   try {
 
