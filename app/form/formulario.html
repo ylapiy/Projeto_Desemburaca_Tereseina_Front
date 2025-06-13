@@ -94,7 +94,7 @@ console.log(window.esperandoConc)
     agora é serio, é pq mesmo sentdo um site agora isso foi pensado pra posteriomenter virar aplicativo
     então na realidade faz sentido (eu acho) */
 
-document.getElementById('form-denuncia').addEventListener('submit', (Entrada) => {
+document.getElementById('form-denuncia').addEventListener('submit', (Entrada) => {  
             Entrada.preventDefault()
             const arquivo = document.getElementById('photo');
             const camera = document.getElementById('camera');
@@ -142,8 +142,7 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     PreparandoEnvioOFF()
 
                     var contador = 0
-                    loopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
-                        
+                    loopDeAnim(contador,"Denuncia Salva, esperando conexão com a internet para finalizar a denuncia")
                 }
 
             }else{
@@ -182,6 +181,7 @@ document.getElementById('fecharimagem').addEventListener('click',() =>{
     document.querySelector('.fundoescuro').style.visibility = 'hidden';
     document.querySelector('.fundoescuro').style.display = 'hidden';
 })
+
 
 
 window.addEventListener('online', () => {
@@ -223,7 +223,10 @@ window.addEventListener('offline', () => {
             butao.textContent = "Salvar Denuncia"; 
         });
 window.addEventListener('onload', () =>{
-    if( localStorage.getItem(SerReiniciar) == true){tentarEnviar();}
+    const butao = document.querySelector('.submit-btn');
+    if(localStorage.getItem(SerReiniciar) === false){tentarEnviar();}else{butao.disabled = true;var contador = 0;oopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
+    }
+
 })
 document.addEventListener('DOMContentLoaded', () => {
            const butao = document.querySelector('.submit-btn');
