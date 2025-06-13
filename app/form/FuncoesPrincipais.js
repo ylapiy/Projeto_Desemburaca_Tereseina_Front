@@ -139,7 +139,7 @@ export function LeituraDefoto(Entrada){
                                 }
                                 }).catch((e) => {
                                     butao.disabled = true;
-                                    butao.textContent = `Imagem Inválida -  LocalizaçãoIncerta`;
+                                    butao.textContent = `Imagem Inválida -  Localização Incerta`;
                                 });
 
                            if(lat2 === null || lon2 === null){

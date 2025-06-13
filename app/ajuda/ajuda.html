@@ -14,58 +14,104 @@
         </div>
         <div class="navbar-links">
             <a href="../form/formulario.html"><span class="textoDaBarraSub">Submeter</span></a>
+            <a href="../home/index.html"><span class="textoDaBarra">Inicio</span></a>
             <a href="../serv/serv.html"><span class="textoDaBarra">Serviços</span></a>
             <a href="../sobre/sobre.html"><span class="textoDaBarra">Saiba Mais</span></a>
         </div>
     </nav>
     
     <div class="localdaImagem">
+
+        <div class="fundoescuro">
+        <div class ="popupenvio">
+            <H2>Email enviada com sucesso!</H2>
+            <button class="fechar" id="fecharenvio">X</button>
+        </div>
+        </div>
+
         <div class="divDaImagem">
-            <h3>Ajude a melhorar sua cidade!</h3>
-            <p>Denuncie buracos nas ruas e ajude a prefeitura a agir mais rápido.</p>
+            <h3>Dúvidas Frequentes: </h3>
         </div>
-        <h3>E como funciona?</h3>
         
-        <div class="divIcons">
-            <div class="limiteDosIcons">
-                <img src="../../assets/camera.png" alt="Camera" height="80px" width="80">
-                <p class="textoDasImages">tire uma foto do buraco</p>
-            </div>
-            <div class="limiteDosIcons">
-                <img src="../../assets/upload.png" alt="Camera" height="80px" width="80">
-                <p class="textoDasImages">Envie a foto através do formulario</p>
-            </div>
-            <div class="limiteDosIcons">
-                <img src="../../assets/government.png" alt="Camera" height="80px" width="80">
-                <p class="textoDasImages">A prefeitura ser notificada</p>
-            </div>
-            <div class="limiteDosIcons">
-                <img src="../../assets/checked.png" alt="Camera" height="80px" width="80">
-                <p class="textoDasImages">Com a sua denuncia o bura será tampado</p>
-            </div>
-
-        </div>
-        <h3>Um exemplo para ajudar :</h3>
-
-        <div class="ImagemDeExemplo">
-           <img src="../../assets/form_exemplo.png" height="500" class="imgExemplo"></img></p>
-        </div>
         <div class="textoExplicao">
-                <p class="textoExplicao"><strong>Localização:</strong> Informe a rua ou avenida onde está o buraco.</p>
-                <p class="textoExplicao"><strong>Tamanho:</strong> Inforamção sobre o tamanho aproximado do buraco da denuncia.</p>
-                <p class="textoExplicao"><strong>Descrição adicional:</strong> Adicione mais detalhes, como números de casas ou estabelecimentos perto do buraco</p>
-                <p class="textoExplicao"><strong>Foto do buraco:</strong> Faça upload da imagem do buraco para ajudar na denuncia, essa imagen deve apresentar a localização gps de enta esta o buraco, caso não tenha nçao sera possivel terinar a denuncia.</p>
+                <p class="textoExplicao"><strong><br>Imagem inválida, por quê?</strong></p>
+                <p class="textoAjuda">Evite usar fotos que foram enviadas para você pelo WhatsApp ou qualquer outra rede social, pois elas não salvam os dados necessários para concluir a denúncia, se possível tire a foto na hora da denúncia.</p>
+                
+                <p class="textoExplicao"><br><strong>Formulário preenchido, e agora?</strong></p>
+                <p class="textoAjuda">Apareceu o botão:</p>
+                <p class="textoAjuda"><strong>➜ Enviar denúncia:</strong> Denúncia pronta para ser enviada normalmente.</p>
+                <p class="textoAjuda"><strong>➜ Salvar denúncia:</strong> Você está sem conexão com a internet e pode salvar a denúncia para enviá-la assim que a internet voltar.</p>
+                <p class="textoAjuda"><strong>➜ Imagem fora da área de Teresina/ Localização incerta:</strong> A imagem foi tirada fora da área de Teresina e por isso não pode ser enviada como denúncia.</p>
+                <p class="textoAjuda"><strong>➜ Imagem sem dados de GPS/ Erro nos dados de GPS:</strong> A imagem não apresenta dados de GPS salvos, o que torna impossível determinar onde ela foi capturada.</p>
+                <p class="textoAjuda"><strong>➜ Imagem sem dados de data:</strong> Imagem não apresenta dados de quando ela foi capturada, o que a torna inválida para denúncia.</p>
+                
+                <p class="textoExplicao"><br><strong>Precisa de ajuda para ativar os dados de GPS nas fotos?</strong></p>
+                <p class="textoAjuda"><strong>➜ Ativar GPS no ANDROID (Samsung, Motorola, etc.):</strong>
+                    <br><span class="indent">1. Abra o app da Câmera.</span>
+                    <br><span class="indent">2. Vá em Configurações (ícone de engrenagem).</span>
+                    <br><span class="indent">3. Procure por "Localização" ou "Tag de localização".</span>
+                    <br><span class="indent">4. Ative essa opção.</span>
+                    <br><span class="indent">5. Verifique se o GPS (localização) do celular está ligado.</span>
+                    <br><span class="indent">Pronto: as próximas fotos terão dados de GPS (exif com localização).</span></p>
+                
+                <p class="textoAjuda"><strong>➜ Ativar GPS no IOS (iPhone):</strong>
+                    <br><span class="indent">1. Vá em Ajustes > Privacidade e Segurança > Serviços de Localização.</span>
+                    <br><span class="indent">2. Verifique se os Serviços de Localização estão ativados.</span>
+                    <br><span class="indent">3. Role até Câmera e toque nela.</span>
+                    <br><span class="indent">4. Selecione a opção "Ao Usar o App" ou "Sempre".</span>
+                    <br><span class="indent">Pronto: Agora seu iPhone vai incluir os dados de localização nas fotos.</span></p>
+                
+                <p class="textoAjuda"><strong>➜ Ativar GPS no XIAOMI (MIUI):</strong>
+                    <br><span class="indent">1. Vá em Configurações > Localização e ative o "Usar localização".</span>
+                    <br><span class="indent">2. Abra o app Câmera.</span>
+                    <br><span class="indent">3. Toque nas Configurações da câmera (ícone de engrenagem).</span>
+                    <br><span class="indent">4. Procure por "Salvar informações de localização" ou "Marca de localização".</span>
+                    <br><span class="indent">5. Ative essa opção.</span>
+                    <br><span class="indent">Pronto: GPS ligado + essa função ativa = fotos com dados de localização.</span></p>
             </div>
+    </div>
+
+    <div class="localdaImagem">
+        <form id="formemai" action="https://formsubmit.co/34094d6d84f766c6f192c602cb3a4cf0" method="POST" target="formFrame">
+            <label for="mensagem">Mais alguma dúvida? Mande uma mensagem ao suporte:</label><br>
+            <textarea id="mensagem" name="mensagem" rows="5" cols="55" required></textarea><br><br>
+
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_captcha" value="false">
+
+            <button type="submit" id="email" class="Bemail">Enviar Email</button>
+        </form>
+
+        <iframe name="formFrame" style="display:none;"></iframe>
     </div>
 </body>
 
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-left">
-            <p>&copy; 2025 Prefeitura Municipal de Tereseina - Desemburaca Teresina. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Prefeitura Municipal de Teresina - Desemburaca Teresina. Todos os direitos reservados.</p>
         </div>
     </div>
 </footer>
+
+<script>
+
+document.getElementById('email').addEventListener('click',()=>{
+    document.querySelector('.popupenvio').style.visibility = 'visible';
+    document.querySelector('.popupenvio').style.display = 'flex';
+    document.querySelector('.fundoescuro').style.visibility = 'visible';
+    document.querySelector('.fundoescuro').style.display = 'flex';
+});
+
+document.getElementById('fecharenvio').addEventListener('click',() =>{
+    document.querySelector('.popupenvio').style.visibility = 'hidden';
+    document.querySelector('.popupenvio').style.display = 'none';
+    document.querySelector('.fundoescuro').style.visibility = 'hidden';
+    document.querySelector('.fundoescuro').style.display = 'hidden';
+    document.getElementById('formemai').mensagem.value = "";
+});
+
+</script>
 
 
 </html>

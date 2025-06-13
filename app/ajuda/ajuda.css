@@ -1,3 +1,48 @@
+.fundoescuro{
+
+  display: none; 
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.popupenvio{
+background-color: white;
+justify-content: center;
+position : absolute;
+border: 3px groove #fdb710;
+border-radius: 5px;
+visibility: hidden;
+display: none;
+z-index: 2;
+
+}
+
+.fechar{
+
+margin:0px;
+border-top:0px;
+border-right:0px;
+border-left: 3px groove #fdb710;
+border-bottom: 3px groove #fdb710;
+position: absolute;
+right: 0px;
+top: 0px;
+
+}
+
+.fechar:hover{
+
+ background-color: rgb(219, 219, 219);
+} 
+
 body {
   background-color: #EEEEEE;
   margin: 0;
@@ -217,13 +262,14 @@ body.deuteranopia .acessibilidade {
 body.tritanopia .navbar {
     background-color: #d4aa3c;
 }
+
 body.tritanopia .textoDaBarraSub,
 body.tritanopia .acessibilidade {
     background-color: #ba9130;
 }
 
 body {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .footer {
@@ -257,7 +303,7 @@ body {
 }
 
 .footer-right a:hover {
-    color: #003366;
+    color: #003366;
 }
 
 @media (max-width: 768px) {
@@ -303,7 +349,7 @@ body {
 
     .submit-btn {
         font-size: 1rem;
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 1.5rem;
     }
 
   .ImagemDeExemplo {
@@ -319,9 +365,69 @@ body {
 }
 
 .textoExplicao {   
-  font-size: 1rem;       
+  font-size: 1rem;     
 }
 
 
 
-  }
+}
+
+
+.textoAjuda {
+  text-indent: 2rem;
+}
+
+.indent {
+  display: inline-block;
+  text-indent: 3rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fdfdfd;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+form label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-family: Arial, sans-serif;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  border-color: #fdb710;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(253, 183, 16, 0.3);
+}
+
+button.Bemail {
+  background-color: #fdb710;
+  color: #333;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.Bemail:hover {
+  background-color: #e6a500;
+}
