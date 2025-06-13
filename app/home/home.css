@@ -117,6 +117,8 @@ margin-top: 50px;
 display: flex;
 flex-direction: row;
 justify-content: space-around;
+max-width: 100%;
+flex: 1 1 300px;
 
 
 }
@@ -317,6 +319,7 @@ body {
     height: 50%;
     flex: 1 1 300px;         
 }
+
 
 .textoExplicao {   
   font-size: 1rem;       
