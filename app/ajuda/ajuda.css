@@ -1,0 +1,327 @@
+body {
+  background-color: #EEEEEE;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  width: 100%;
+  height: 4rem;
+  background: #fdb710;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.imagemLogodaPrefeitura {
+  height: 3rem;
+  width: auto;
+}
+
+.textoDaBarra {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.textoDaBarraSub {
+  color: #333;
+  padding-left: 0.5rem;
+  padding-top: 0.3rem;
+  padding-right:  0.5rem;
+  background-color: #DC9B33;
+  font-size: 1.2rem;
+  border-radius: 20px ;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+  height: 100px;
+  width: 25px;
+}
+
+.textoDaBarra:hover {
+  border-bottom-color: #333;
+  color: #000;
+}
+
+.NomedaAplicação {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+.localdaImagem {
+  position: relative;
+  height: 90%;
+  width: 80%;
+  max-width: 1200px;
+  margin: 8rem auto 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+
+}
+
+.divDaImagem {
+  width: 100%;
+  height: 15%;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: left;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 2rem;
+  box-sizing: border-box;
+  flex-direction:column;
+}
+
+
+.divIcons {
+
+position: relative;
+height: 15%;
+margin-top: 50px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+
+
+}
+
+.limiteDosIcons{
+
+text-align: center;
+width: 24%;
+
+}
+
+.ImagemDeExemplo {
+  background-color: #eeeeee;
+  height: 600px;
+  width: 100%;
+}
+
+.imgExemplo {
+
+max-width: 100%;
+min-width: 100%;
+height: 100%;
+top:0px;
+
+}
+ 
+.TextoExemplo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  justify-content: center;
+  color: #333;
+}
+
+.acessibilidade {
+    margin-right: 1rem;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background-color: #DC9B33;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.acessibilidade label {
+    color: #222;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.acessibilidade label:hover {
+    border-color: #DC9B33;
+    cursor: pointer;
+}
+
+.acessibilidade select {
+    padding: 6px 12px;
+    font-size: 1rem;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #222;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.acessibilidade select:focus {
+    border-color: #DC9B33;
+    box-shadow: 0 0 0 3px #DC9B33;
+    outline: none;
+}
+
+/* ===== Daltonismo: Protanopia ===== */
+body.protanopia .navbar {
+    background-color: #caa731;
+}
+body.protanopia .textoDaBarraSub,
+body.protanopia .acessibilidade {
+    background-color: #b8942a;
+}
+
+/* ===== Daltonismo: Deuteranopia ===== */
+body.deuteranopia .navbar {
+    background-color: #e0b634;
+}
+body.deuteranopia .textoDaBarraSub,
+body.deuteranopia .acessibilidade {
+    background-color: #c89e2c;
+}
+
+/* ===== Daltonismo: Tritanopia ===== */
+body.tritanopia .navbar {
+    background-color: #d4aa3c;
+}
+body.tritanopia .textoDaBarraSub,
+body.tritanopia .acessibilidade {
+    background-color: #ba9130;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-left {
+    color: #333;
+    font-size: 14px;
+}
+
+.footer-right a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-right a:hover {
+    color: #003366;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        height: auto;
+        padding: 1rem;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .navbar-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .navbar-links {
+        flex-direction: row;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .textoDaBarra {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+        margin-top: 9rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+  .ImagemDeExemplo {
+    display: flex;
+    align-items: flex-start;   
+    height: auto;           
+}
+
+  .imgExemplo {
+    max-width: 100%;
+    height: 50%;
+    flex: 1 1 300px;         
+}
+
+.textoExplicao {   
+  font-size: 1rem;       
+}
+
+
+
+  }

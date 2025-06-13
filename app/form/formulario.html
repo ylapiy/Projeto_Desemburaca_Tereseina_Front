@@ -77,8 +77,7 @@
 
 import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim} from './FuncoesPrincipais.js'
 
-
-
+window.esperandoConc =  localStorage.getItem('SerReiniciar')
 window.lat2 = null;
 window.lon2 = null;
 window.Data = null;
@@ -86,6 +85,9 @@ window.Foto = null;
 window.Rua = null;
 window.Bairro = null;
 window.timeoutAnimacao = null;
+
+console.log(localStorage.getItem('SerReiniciar'))
+console.log(window.esperandoConc)
 
 /*  script para verificar se a imagem tem tudo certinho, data, gps e depois se internet ta on ne,
     agora se tu me perguntar, pq um site opção de selavar offline, eu te respondo, boa pergunta! Não mas, a
@@ -122,7 +124,7 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     document.querySelector('.fundoescuro').style.visibility = 'visible';
                     document.querySelector('.fundoescuro').style.display = 'flex';
                     ;}) 
-
+                    
                     var contador = 0
                     loopDeAnim(contador,"Enviando Denuncia, aguarde") 
 
@@ -132,7 +134,10 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     window.esperandoConc = true;
                     butao.disabled = true;
                     console.log('salvando denuncia')
-                    console.log('Situação da conc:', window.esperandoConc)
+                    console.log('Esperando conc:', window.esperandoConc)
+
+                    localStorage.setItem('SerReiniciar',window.esperandoConc );
+                    console.log(localStorage.getItem('SerReiniciar'))
 
                     PreparandoEnvioOFF()
 
@@ -195,9 +200,10 @@ window.addEventListener('online', () => {
             if(dados.size == "small"){categoria = 1}else{if(dados.size == "medium"){categoria = 2}else{if(dados.size == "large"){categoria = 3}}}
 
             if (window.esperandoConc === true) {
-
-            window.esperandoConc = false
             
+            window.esperandoConc = false
+            localStorage.setItem('SerReiniciar',window.esperandoConc);
+
             try {
             butao.disabled = true;
                 var contador = 0
@@ -210,7 +216,6 @@ window.addEventListener('online', () => {
             }
 
             butao.textContent = "Enviar Denuncia";
-            window.esperandoConc = false;
             }
         });
 window.addEventListener('offline', () => {
@@ -218,8 +223,8 @@ window.addEventListener('offline', () => {
             butao.textContent = "Salvar Denuncia"; 
         });
 window.addEventListener('onload', () =>{
-            /*tentarEnviar();*/
-        })
+    if( localStorage.getItem(SerReiniciar) == true){tentarEnviar();}
+})
 document.addEventListener('DOMContentLoaded', () => {
            const butao = document.querySelector('.submit-btn');
            if(navigator.onLine){
@@ -232,4 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 </body>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <p>&copy; 2025 Prefeitura Municipal de Tereseina - Desemburaca Teresina. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
 </html>
