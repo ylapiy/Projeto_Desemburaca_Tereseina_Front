@@ -74,6 +74,7 @@
     <div class="localdaImagem">
         <form id="formemai" action="https://formsubmit.co/34094d6d84f766c6f192c602cb3a4cf0" method="POST" target="formFrame">
             <label for="mensagem">Mais alguma dúvida? Mande uma mensagem ao suporte:</label><br>
+            <input type="email" name="email" id="campodeemail" required placeholder="Digite aqui seu emai, para resposta">
             <textarea id="mensagem" name="mensagem" rows="5" cols="55" required></textarea><br><br>
 
             <input type="text" name="_honey" style="display:none">
@@ -97,10 +98,13 @@
 <script>
 
 document.getElementById('email').addEventListener('click',()=>{
+    const texto = document.getElementById('campodeemail')
+    if(texto != ""){
     document.querySelector('.popupenvio').style.visibility = 'visible';
     document.querySelector('.popupenvio').style.display = 'flex';
     document.querySelector('.fundoescuro').style.visibility = 'visible';
     document.querySelector('.fundoescuro').style.display = 'flex';
+    }
 });
 
 document.getElementById('fecharenvio').addEventListener('click',() =>{
@@ -108,6 +112,8 @@ document.getElementById('fecharenvio').addEventListener('click',() =>{
     document.querySelector('.popupenvio').style.display = 'none';
     document.querySelector('.fundoescuro').style.visibility = 'hidden';
     document.querySelector('.fundoescuro').style.display = 'hidden';
+    console.log(document.getElementById('campodeemail').value)
+    document.getElementById('campodeemail').value = "";
     document.getElementById('formemai').mensagem.value = "";
 });
 
