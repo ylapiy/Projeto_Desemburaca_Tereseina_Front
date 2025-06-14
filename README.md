@@ -1,6 +1,7 @@
 # Desemburaca Teresina 🕳️🚧
 
 Sistema web para denúncia de buracos nas vias públicas de Teresina, desenvolvido como projeto acadêmico do Centro Universitário iCEV.
+https://desemburacatereseina.vercel.app/app/home/index.html
 
 ## 📋 Sobre o Projeto
 
@@ -28,6 +29,7 @@ O **Desemburaca Teresina** é uma plataforma que facilita a comunicação entre 
 
 ### Backend/APIs
 
+- **Repositorio com o back** - https://github.com/ditimon01/Projeto_Desemburaca_Teresina_API
 - **LocationIQ API** - Geocodificação reversa
 - **Railway** - Hospedagem da API
 - **Google Drive API** - Armazenamento de imagens

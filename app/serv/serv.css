@@ -153,9 +153,17 @@ a {
   color: #999;
 }
 
+.tabela{
+width: 99vw;
+overflow-x: scroll;
+position: sticky;
+}
+
 #tabelaDenuncias {
   width: 100%;
   border-collapse: collapse;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 #tabelaDenuncias th, #tabelaDenuncias td {
@@ -165,7 +173,7 @@ a {
 }
 
 #tabelaDenuncias th {
-  background-color: #eee;
+  background-color: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -215,7 +223,7 @@ a {
 }
 
 #tabelaDenuncias{
-  width: 85%;
+  overflow-x: auto;
   border-collapse: collapse;
 }
 

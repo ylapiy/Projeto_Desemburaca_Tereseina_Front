@@ -42,6 +42,13 @@ a {
   width: auto;
 }
 
+img{
+
+height: 40%;
+width: 40%;
+
+}
+
 .textoDaBarra {
   color: #333;
   font-size: 1.2rem;
@@ -263,7 +270,13 @@ body {
 }
 
 @media (max-width: 768px) {
-    .navbar {
+  .textoDasImages{
+
+    font-size: 0.8rem;
+
+  }
+  
+  .navbar {
         flex-direction: row;
         height: auto;
         padding: 1rem;
