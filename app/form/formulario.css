@@ -351,7 +351,7 @@ body {
     cursor: pointer;
     position: absolute;
     top:84%;
-    left: 85%;
+    left:85%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,6 +362,27 @@ body {
 }
 
 .botaolinkaajuda:hover{
-background-color: #5a420b;
-transform: scale(1.05);
+    background-color: #5a420b;
+    transform: scale(1.05);
+}
+
+
+.botaodecamera{
+
+    background-color: #fdb710;
+    color: #333;
+    border: 0.5px solid black;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 100;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.botaodecamera:hover{
+
+    background-color: #e5a50f;
+    color: #333;
+
 }
