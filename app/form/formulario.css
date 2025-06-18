@@ -366,7 +366,6 @@ body {
     transform: scale(1.05);
 }
 
-
 .botaodecamera{
 
     background-color: #fdb710;
@@ -377,6 +376,7 @@ body {
     font-weight: 100;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 7px;
 
 }
 

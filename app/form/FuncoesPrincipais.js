@@ -133,8 +133,9 @@ export function LeituraDefoto(Entrada){
                                 if (estaDentro) {
                                     if(navigator.onLine){
                                         butao.textContent = "Enviar Denuncia"; 
+                                        linkajuda.style.visibility = "hidden"
                                     }else{
-                                        butao.textContent = "Salvar Denuncia"; }
+                                        butao.textContent = "Salvar Denuncia"; linkajuda.style.visibility = "hidden";}
                                 } else {
                                     butao.disabled = true;
                                     butao.textContent = `Imagem Invalida - Imagem Fora da Area de Teresina`;

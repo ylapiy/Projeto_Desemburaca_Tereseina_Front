@@ -34,7 +34,6 @@
         </div>
         </div>
 
-
         <form class="form-container" id="form-denuncia">
             <h2>Formulário de Denúncia</h2>
             
@@ -60,12 +59,12 @@
 
             <div class="form-group">
                 <label for="photo">Foto do buraco :</label>
-                <input type="file" id="photo" name="photo" accept="image/*" class="botaodeimgem">
+                <input type="file" id="photo" name="photo" accept="image/*" style="display:none;">
+                <button class="botaodecamera" id="iconephoto" onclick="document.getElementById('photo').click()"> Colocar Foto da Galeria</button>
                 <label for="camera">Tirar foto agora :</label>
                 <input type="file" id="camera" name="camera" accept="image/*" capture="environment" style="display:none;">
                 <button class="botaodecamera" type="button" id="iconecamera" onclick="document.getElementById('camera').click()">📷 Usar Câmera</button>
             </div>
-
 
             <button class="submit-btn" id="submit">Enviar Denuncia</button>
         </form>
@@ -159,16 +158,22 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
         });
         
 document.getElementById('photo').addEventListener('change', (Entrada) => {
-             const camera = document.getElementById('iconecamera')
+            const camera = document.getElementById('iconecamera')
              camera.innerText =  "📷 Usar Câmera"
              document.getElementById('camera').value = ""; 
+
+             const arquivo = document.getElementById('iconephoto')
+             arquivo.innerText = "Colocar Foto da Galeria - ✔️"
              LeituraDefoto(Entrada)  
         });
         
 document.getElementById('camera').addEventListener('change', (Entrada) => {
             const camera = document.getElementById('iconecamera')
             camera.innerText =  "📷 Usar Câmera - ✔️ "
+
+            const arquivo = document.getElementById('iconephoto')
             document.getElementById('photo').value = ""; 
+            arquivo.innerText = "Colocar Foto da Galeria"
             LeituraDefoto(Entrada)
         });
 
