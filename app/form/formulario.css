@@ -337,3 +337,31 @@ body {
 .footer-right a:hover {
     color: #003366;
 }
+
+.botaolinkaajuda{
+
+    background-color: #70520d;
+    color: #fff; 
+    border: none;
+    border-radius: 50%; 
+    width: 30px;
+    height: 30px; 
+    font-size: 1.2em; 
+    font-weight: bold; 
+    cursor: pointer;
+    position: absolute;
+    top:84%;
+    left: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    visibility: hidden;
+
+
+}
+
+.botaolinkaajuda:hover{
+background-color: #5a420b;
+transform: scale(1.05);
+}

@@ -102,6 +102,7 @@ export function LeituraDefoto(Entrada){
 
             resetTodos();
             const butao = document.querySelector('.submit-btn');
+            const linkajuda = document.getElementById("linkajuda")
           
                 EXIF.getData(arquivoFoto, function() {
                     const Metadados = EXIF.getAllTags(this);
@@ -137,25 +138,30 @@ export function LeituraDefoto(Entrada){
                                 } else {
                                     butao.disabled = true;
                                     butao.textContent = `Imagem Invalida - Imagem Fora da Area de Teresina`;
+                                    linkajuda.style.visibility = "visible"
                                 }
                                 }).catch((e) => {
                                     butao.disabled = true;
                                     butao.textContent = `Imagem Inválida -  Localização Incerta`;
+                                    linkajuda.style.visibility = "visible"
                                 });
 
                            if(lat2 === null || lon2 === null){
                             butao.disabled = true;
                                  butao.textContent = `Imagem Invalida - Imagem Sem Dados De GPS`;
+                                 linkajuda.style.visibility = "visible"
                             }
 
                             } catch (e) {
                                 butao.disabled = true;
                                 butao.textContent = `Imagem Inválida - Erro nos Dados de GPS`;}
+                                linkajuda.style.visibility = "visible"
                              } else {
                                 butao.disabled = true;
                                 butao.textContent = possuiData
                                 ? `Imagem Inválida - Sem Dados de GPS`
                                 : `Imagem Inválida - Sem Dados de Data`;
+                                linkajuda.style.visibility = "visible"
 
                 }              
             })
@@ -184,10 +190,11 @@ export function resetTodos() {
   window.Rua = null;
   window.Bairro = null;
   window.timeoutAnimacao = null;
+    const linkajuda = document.getElementById("linkajuda").style.visibility = "hidden"
     const butao = document.querySelector('.submit-btn');
     if (butao) {
-      butao.disabled = false;
-      butao.textContent = 'Enviar Denuncia';
+    butao.disabled = false;
+    butao.textContent = 'Enviar Denuncia';
     }
 };
 
