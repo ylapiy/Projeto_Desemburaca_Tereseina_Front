@@ -257,7 +257,6 @@ body {
     background-color: #70520d;
 }
 
-
 @media (max-width: 768px) {
     .navbar {
         flex-direction: row;
@@ -339,7 +338,6 @@ body {
 }
 
 .botaolinkaajuda{
-
     background-color: #70520d;
     color: #fff; 
     border: none;
@@ -348,16 +346,11 @@ body {
     height: 30px; 
     font-size: 1.2em; 
     font-weight: bold; 
+    right: 0%;
     cursor: pointer;
     position: absolute;
-    top:84%;
-    left:85%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     visibility: hidden;
-
 
 }
 
@@ -366,11 +359,19 @@ body {
     transform: scale(1.05);
 }
 
+.conteinerDeBotoes{
+
+position: relative;
+width: 100%; 
+margin: auto;
+
+}
+
 .botaodecamera{
 
-    background-color: #fdb710;
+    background-color: rgb(253, 183, 16);
     color: #333;
-    border: 0.5px solid black;
+    border: 0.5px solid rgb(207, 148, 9);
     border-radius: 4px;
     font-size: 0.9rem;
     font-weight: 100;
