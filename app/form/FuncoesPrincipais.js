@@ -256,29 +256,26 @@ export function loopDeAnim(contador,texto){
 
 export async function RevesaoGeografica(lon, lat){
 
-const API_KEY = 'pk.7ac70b80805183e2466b163c071075dc'
-const url = `https://us1.locationiq.com/v1/reverse.php?key=${API_KEY}&lat=${lat}&lon=${lon}&format=json`;
-
 try{
-const resposta = await fetch(url, { headers: {'User-Agent': 'GeoAPI/1.0 (browser)'}})
+  
+  const response = await fetch(`https://projetodesemburacateresinaapi-production-1abf.up.railway.app/reversao-geografica?lat=${lat}&lon=${lon}`);
 
-if(!resposta.ok){throw new Error ('Reversão geografica eu vou lhe pegar')}
+  if(!response.ok){throw new Error ('Reversão geografica eu vou lhe pegar')};
 
-const Dados = await resposta.json()
-const endereco = Dados.address
+  const Dados = await response.json();
 
-const Bairro = endereco.suburb || 'Bairro não encontrado'
-const Rua = endereco.road || 'Rua não encontrada'
+  const Bairro = Dados.bairro || 'Bairro não encontrado'
+  const Rua = Dados.rua || 'Rua não encontrada'
 
-window.Bairro = Bairro;
-window.Rua = Rua;
+  window.Bairro = Bairro;
+  window.Rua = Rua;
 
-console.log('Rua:',Rua )
-console.log('Bairro',Bairro)
+  console.log('Rua:',Rua )
+  console.log('Bairro',Bairro)
 
 }catch(e){
 
-console.log('Erro ao se conectar a Api de reversão geografica : ',e )
+  console.log('Erro ao se conectar a Api de reversão geografica : ',e )
 
 }
 
