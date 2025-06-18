@@ -191,7 +191,7 @@ export function resetTodos() {
   window.Rua = null;
   window.Bairro = null;
   window.timeoutAnimacao = null;
-    const linkajuda = document.getElementById("linkajuda").style.visibility = "hidden"
+    document.getElementById("linkajuda").style.visibility = "hidden"
     const butao = document.querySelector('.submit-btn');
     if (butao) {
     butao.disabled = false;
@@ -208,7 +208,6 @@ export function LimpezadeForm(){
       document.getElementById('photo').value = ""; 
 
 }
-
 
 export async function verificaTeresina(longitude, latitude) {
 
