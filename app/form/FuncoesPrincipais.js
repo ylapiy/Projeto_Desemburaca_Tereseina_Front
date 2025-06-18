@@ -75,6 +75,7 @@ export function tentarEnviar(){
         document.querySelector('.popupenvio').style.display = 'flex';
         document.querySelector('.fundoescuro').style.visibility = 'visible';
         document.querySelector('.fundoescuro').style.display = 'flex';
+        LimpezadeForm()
         })
         })
 
@@ -189,6 +190,17 @@ export function resetTodos() {
       butao.textContent = 'Enviar Denuncia';
     }
 };
+
+export function LimpezadeForm(){
+   const formulario = document.getElementById('form-denuncia')
+      formulario.location.value = ""
+      formulario.size.value = ""
+      formulario.description.value = ""
+      document.getElementById('camera').value = ""; 
+      document.getElementById('photo').value = ""; 
+
+}
+
 
 export async function verificaTeresina(longitude, latitude) {
 

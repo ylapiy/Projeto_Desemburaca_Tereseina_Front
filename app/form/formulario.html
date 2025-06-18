@@ -10,12 +10,12 @@
     <nav class="navbar">
         <div class="navbar-brand">
             <img src="../../assets/logoPrefeitura.svg" alt="Logo da Prefeitura" class="imagemLogodaPrefeitura">
-            <span class="NomedaAplicação">| Denúncia de Buracos</span>
+            <span class="NomedaAplicação">| Denúncia de Buracos - Formulario</span>
         </div>
         <div class="navbar-links">
             <a href="../home/index.html" style="text-decoration: none"><span class="textoDaBarra">Inicio</span></a>
             <a href="../serv/serv.html" style="text-decoration: none"><span class="textoDaBarra">Serviços</span></a>
-            <a href="../sobre/sobre.html" style="text-decoration: none"><span class="textoDaBarra">Saiba Mais</span></a>
+            <a href="../sobre/sobre.html" style="text-decoration: none"><span class="textoDaBarra">Sobre o projeto</span></a>
             <a href="../ajuda/ajuda.html" style="text-decoration: none"><span class="textoDaBarra">Ajuda</span></a>
         </div>
     </nav>
@@ -76,7 +76,7 @@
 <script src="TeresinaPontos.js"></script> 
 <script type="module">
 
-import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim} from './FuncoesPrincipais.js'
+import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,TransformaCordenada,resetTodos,verificaTeresina,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim,LimpezadeForm} from './FuncoesPrincipais.js'
 
 window.esperandoConc =  localStorage.getItem('SerReiniciar')
 window.lat2 = null;
@@ -124,6 +124,7 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
                     document.querySelector('.popupenvio').style.display = 'flex';
                     document.querySelector('.fundoescuro').style.visibility = 'visible';
                     document.querySelector('.fundoescuro').style.display = 'flex';
+                    LimpezadeForm();
                     ;}) 
                     
                     var contador = 0
