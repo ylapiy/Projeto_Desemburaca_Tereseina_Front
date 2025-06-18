@@ -76,8 +76,6 @@
 
 <script>
 
-//As setas agora giram YEPI
-
 window.addEventListener('resize', () => {
   const largura = window.innerWidth;
 
@@ -124,6 +122,12 @@ Document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
+</script>
+
+<script>
+
+//As setas agora giram YEPI
+
 fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/registro') 
   .then(response => response.json())
   .then(data => {
@@ -131,22 +135,22 @@ fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/regi
     data.forEach(registro => {
       const linha = `
         <tr>
+    
           <td>${registro.data}</td>
           <td>${registro.categoria}</td>
           <td>${registro.status}</td>
           <td>${registro.observacao}</td>
+      
           <td>${registro.rua}</td>
           <td>${registro.bairro}</td>
+   
+     
         </tr>
       `;
       tbody.innerHTML += linha;
     });
   });
 </script>
-
-
-
-
 </body>
 <footer class="footer">
     <div class="footer-content">
