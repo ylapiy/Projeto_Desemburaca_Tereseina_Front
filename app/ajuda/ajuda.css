@@ -13,35 +13,54 @@
   visibility: hidden;
 }
 
-.popupenvio{
-background-color: white;
-justify-content: center;
-position : absolute;
-border: 3px groove #fdb710;
-border-radius: 5px;
-visibility: hidden;
-display: none;
-z-index: 2;
+.popupenvio {
+    background-color: #ffffff; 
+    position: fixed; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50% -50%);
+    border: 1px solid #fdb710;
+    border-radius: 15px; 
+    padding: 30px 40px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    text-align: center; 
+    min-width: 300px; 
+    visibility: hidden;
+    transform: translate(-50%, -50%);
 
 }
 
-.fechar{
-
-margin:0px;
-border-top:0px;
-border-right:0px;
-border-left: 3px groove #fdb710;
-border-bottom: 3px groove #fdb710;
-position: absolute;
-right: 0px;
-top: 0px;
-
+.popupenvio h2 {
+    color: #333; 
+    font-family: 'Segoe UI';
+    font-size: 1.8em; 
+    margin-bottom: 20px; 
 }
 
-.fechar:hover{
+.fechar {
+    background-color: #fdb710; 
+    color: #fff; 
+    border: none;
+    border-radius: 50%; 
+    width: 30px;
+    height: 30px; 
+    font-size: 1.2em; 
+    font-weight: bold; 
+    cursor: pointer;
+    position: absolute; 
+    right: 10px; 
+    top: 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
 
- background-color: rgb(219, 219, 219);
-} 
+.fechar:hover {
+    background-color: #e0a300; 
+    transform: scale(1.05);
+}
 
 body {
   background-color: #EEEEEE;
