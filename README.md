@@ -1,7 +1,7 @@
 # Desemburaca Teresina 🕳️🚧
 
 Sistema web para denúncia de buracos nas vias públicas de Teresina, desenvolvido como projeto acadêmico do Centro Universitário iCEV.
-https://desemburacateresina.vercel.app/
+
 
 ## 📋 Sobre o Projeto
 
