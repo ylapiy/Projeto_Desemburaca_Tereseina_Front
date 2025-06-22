@@ -133,6 +133,13 @@ a {
   width: 25px;
 }
 
+.textoDaBarraSub:hover{
+
+border-bottom-color: #333;
+color: #000;
+
+}
+
 .textoDaBarra:hover {
   border-bottom-color: #333;
   color: #000;
@@ -257,34 +264,6 @@ top:0px;
     border-color: #DC9B33;
     box-shadow: 0 0 0 3px #DC9B33;
     outline: none;
-}
-
-/* ===== Daltonismo: Protanopia ===== */
-body.protanopia .navbar {
-    background-color: #caa731;
-}
-body.protanopia .textoDaBarraSub,
-body.protanopia .acessibilidade {
-    background-color: #b8942a;
-}
-
-/* ===== Daltonismo: Deuteranopia ===== */
-body.deuteranopia .navbar {
-    background-color: #e0b634;
-}
-body.deuteranopia .textoDaBarraSub,
-body.deuteranopia .acessibilidade {
-    background-color: #c89e2c;
-}
-
-/* ===== Daltonismo: Tritanopia ===== */
-body.tritanopia .navbar {
-    background-color: #d4aa3c;
-}
-
-body.tritanopia .textoDaBarraSub,
-body.tritanopia .acessibilidade {
-    background-color: #ba9130;
 }
 
 body {

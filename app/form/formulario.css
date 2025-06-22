@@ -137,6 +137,28 @@ body {
     width: auto;
 }
 
+.textoDaBarraSub {
+  color: #333;
+  padding-left: 0.5rem;
+  padding-top: 0.3rem;
+  padding-right:  0.5rem;
+  background-color: #DC9B33;
+  font-size: 1.2rem;
+  border-radius: 20px ;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+  height: 100px;
+  width: 25px;
+  border-bottom-color: #333;
+  color: #000;
+
+}
+
+
+
 .textoDaBarra {
     color: #333;
     font-size: 1.2rem;

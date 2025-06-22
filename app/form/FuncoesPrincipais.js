@@ -205,7 +205,7 @@ export function LimpezadeForm(){
       formulario.size.value = ""
       formulario.description.value = ""
       document.getElementById('camera').value = ""; 
-      document.getElementById('iconephoto').innerText = "📄 Colocar Foto da Galeria";
+      document.getElementById('iconephoto').innerText = "📁 Colocar Foto da Galeria";
       document.getElementById('photo').value = ""; 
       document.getElementById('iconecamera').innerText = "📷 Usar Câmera";
 

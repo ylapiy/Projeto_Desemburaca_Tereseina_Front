@@ -59,6 +59,13 @@ a {
   width: 25px;
 }
 
+.textoDaBarraSub:hover{
+
+border-bottom-color: #333;
+color: #000;
+
+}
+
 
 .textoDaBarra {
   color: #333;
