@@ -85,7 +85,7 @@ document.getElementById('photo').addEventListener('change', (Entrada) => {
              document.getElementById('camera').value = ""; 
 
              const arquivo = document.getElementById('iconephoto')
-             arquivo.innerText = "Colocar Foto da Galeria - ✔️"
+             arquivo.innerText = "📄 Colocar Foto da Galeria - ✔️"
              LeituraDefoto(Entrada)  
 });
         
@@ -95,7 +95,7 @@ document.getElementById('camera').addEventListener('change', (Entrada) => {
 
             const arquivo = document.getElementById('iconephoto')
             document.getElementById('photo').value = ""; 
-            arquivo.innerText = "Colocar Foto da Galeria"
+            arquivo.innerText = "📄 Colocar Foto da Galeria"
             LeituraDefoto(Entrada)
 });
 
