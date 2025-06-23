@@ -1,6 +1,6 @@
 body{
 
-    background: linear-gradient(to left top, #dad9d9,#f8bd32);
+    background: linear-gradient(to left top, #4d4545,#f8bd32);
     display: flex;
     height: 100vh;
     align-items: center;
@@ -11,14 +11,13 @@ body{
 .spinner{
 
     height: 120px;
-    width: 120px;
+    width: 130px;
     position: fixed;
     margin-top: 10rem;
     border: 6px solid white;
     border-color: #ffb300 transparent #ffb300 transparent;
-    border-radius: 150%;
-    animation: spin 2.0s linear infinite;
-
+    border-radius: 100%;
+    animation: spin 2.0s infinite linear;
 }
 
 img{
@@ -26,16 +25,37 @@ img{
     opacity: 0.6;
     height: 30vh;
     position: fixed;
-
     top: 1.5rem;
-
+    animation: scale 4s infinite linear;
 
 }
 
 
+@keyframes scale {
+    50%{
+        transform: scale(1.10);
+    }
+    50%{
+        transform: scale(0.9);
+
+    }
+   
+}
+
+
+
 @keyframes spin {
-    to{
+    0%{
+        height: 120px;
         transform: rotate(360deg);
+    }
+    50%{
+        height: 150px;
+        transform: rotate(360);
+    }
+    100%{
+        height: 120Px;
+        transform: rotate(360);
 
     }
     
