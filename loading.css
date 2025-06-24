@@ -8,17 +8,6 @@ body{
 
 }
 
-.spinner{
-
-    height: 120px;
-    width: 130px;
-    position: fixed;
-    margin-top: 10rem;
-    border: 6px solid white;
-    border-color: #ffb300 transparent #ffb300 transparent;
-    border-radius: 100%;
-    animation: spin 2.0s infinite linear;
-}
 
 img{
 
@@ -41,24 +30,6 @@ img{
     }
    
 }
-
-@keyframes spin {
-    0%{
-        transform: rotate(-360deg);
-    }
-    50%{
- 
-        transform: rotate(-360);
-    }
-    100%{
-
-        transform: rotate(-360);
-
-    }
-    
-}
-
-
 
 .lds-spinner,
 .lds-spinner div,
