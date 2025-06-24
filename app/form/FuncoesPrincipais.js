@@ -109,8 +109,8 @@ export function LeituraDefoto(Entrada){
                 EXIF.getData(arquivoFoto, function() {
                     const Metadados = EXIF.getAllTags(this);
 
-                    var lat2 = 0;
-                    var lon2 = 0;
+                    var lat2 = null;
+                    var lon2 = null;
             
                     const Data = Metadados.DateTimeOriginal;
                     const NomeFoto = arquivoFoto.name;
