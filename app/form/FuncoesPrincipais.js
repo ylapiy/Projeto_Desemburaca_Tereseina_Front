@@ -170,7 +170,6 @@ export function LeituraDefoto(Entrada){
             })
 };
 
-
 export function TransformaCordenada(cordenadas, hemisferio,) {
     const degrees = cordenadas[0].numerator / cordenadas[0].denominator;
     const minutes = cordenadas[1].numerator / cordenadas[1].denominator;
