@@ -170,6 +170,103 @@ export function LeituraDefoto(Entrada){
             })
 };
 
+export async function LeituraPelaCamera(Entrada){
+  const arquivoFoto = Entrada.target.files[0];
+
+  if(!arquivoFoto){
+    resetTodos();
+    return;
+  }
+
+  const nomeFoto = arquivoFoto.name;
+
+  resetTodos();
+  const butao = document.querySelector('.submit-btn');
+  const linkajuda = document.getElementById("linkajuda");
+
+  butao.textContent = "Verificando localização..."
+  butao.disabled = true;
+
+  let lat2 = null;
+  let lon2 = null;
+
+  if(navigator.geolocation) {
+    const localizacao = await LocalizacaoAtual();
+    lat2 = localizacao.latitude;
+    lon2 = localizacao.longitude;
+  } else {
+    console.log("Geolocalização não suportada!");
+
+    butao.disabled = true;
+    butao.textContent = "Imagem Inválida - Erro nos Dados de GPS";
+    linkajuda.style.visibility = "visible"
+  }
+
+  const dataAtual = new Date().toISOString();
+
+  console.log(dataAtual)
+  console.log('latitude:', lat2)
+  console.log('longitude:', lon2)
+
+  window.lat2 = lat2;
+  window.lon2 = lon2;
+  window.Data = dataAtual;
+  window.Foto = arquivoFoto;
+  window.Nome = nomeFoto;
+
+
+  verificaTeresina(lon2,lat2).then((estaDentro) => {
+    if (estaDentro) {
+      if(navigator.onLine){
+        butao.textContent = "Enviar Denuncia"; 
+        linkajuda.style.visibility = "hidden"
+      } else {
+        butao.textContent = "Salvar Denuncia"; linkajuda.style.visibility = "hidden";
+      }
+    } else {
+      butao.disabled = true;
+      butao.textContent = "Imagem Invalida - Imagem Fora da Area de Teresina";
+      linkajuda.style.visibility = "visible"
+    }
+  }).catch((e) => {
+    butao.disabled = true;
+    butao.textContent = "Imagem Inválida -  Localização Incerta";
+    linkajuda.style.visibility = "visible"
+    return;
+  });
+
+  if(lat2 === null || lon2 === null){
+    butao.disabled = true;
+    butao.textContent = "Imagem Invalida - Imagem Sem Dados De GPS";
+    linkajuda.style.visibility = "visible"
+    return;
+  }
+
+  butao.textContent = "Enviar Denúncia"
+  butao.disabled = false;
+
+}
+
+async function LocalizacaoAtual(){
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+        
+      },
+      (error) => {
+        reject(error);
+        butao.disabled = true;
+        butao.textContent = "Imagem Inválida - Erro nos Dados de GPS";
+        linkajuda.style.visibility = "visible";
+    }
+)
+})
+}
+
 export function TransformaCordenada(cordenadas, hemisferio,) {
     const degrees = cordenadas[0].numerator / cordenadas[0].denominator;
     const minutes = cordenadas[1].numerator / cordenadas[1].denominator;
