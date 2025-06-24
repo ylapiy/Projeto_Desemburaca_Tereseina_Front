@@ -114,6 +114,16 @@ document.getElementById('fecharimagem').addEventListener('click',() =>{
     document.querySelector('.fundoescuro').style.display = 'hidden';
 });
 
+document.getElementById('fecharnaoenvio').addEventListener('click', () =>{
+    document.querySelector('.popupnaoenvio').style.visibility = 'hidden';
+    document.querySelector('.popupnaoenvio').style.display = 'none';
+    document.querySelector('.fundoescuro').style.visibility = 'hidden';
+    document.querySelector('.fundoescuro').style.display = 'none';
+
+
+
+})
+
 window.addEventListener('online', () => {
             const arquivo = document.getElementById('photo');
             const camera = document.getElementById('camera');
@@ -170,3 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             butao.textContent = "Salvar Denuncia"; 
            }
 });
+
+//eu sinto que a minha cabeça vai sair do meu corpo a cada linha escrita, sera que eu to ficando doido?
+//quando eu leio esse comentarios eu so leio ou uma voz na minha cabeça que le pra mim e eu escuto ela,
+//pera mas eu acho normal ouvir uma voz, é eu to ficando doido

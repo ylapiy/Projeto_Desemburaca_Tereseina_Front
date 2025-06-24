@@ -216,6 +216,10 @@ export function LimpezadeForm(){
 
 export async function verificaTeresina(longitude, latitude) {
 
+  //tereseina é grande ne, a pior pate foi que eu cojitei usar um for pra rodar todas as cords do TeresinaPontos.js 
+  //o professor Samuel provavelmente me mataria só de pensar nisso
+  //mas relamente colocar um ponto num poligono é bem mais elegante 
+
     try {
     const ponto = turf.point([longitude, latitude]);
     const Teresina = teresinaGeoJson.features[0];
@@ -259,8 +263,24 @@ export function loopDeAnim(contador,texto){
                     
 };
 
+//aqui são as funções relacionados a API,
+//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, acho que era gepeto ne mas era so eu lhe trolando, mas nesse caso eu taria fazendo alguem rir ao ler isso
+//ou so me fazendo mal, para pra pesnar vai ver a pessoa não ta nem pesando que eu usei IA ou (ta sei la não vou julgar, mas sinceramente é estranho 
+//bate no trabalho de outra pessoa e a priemria coisa é pensar, MDS sera que iss foi feito pelo GPT ou o Gemini, não sei eu me acaharia estranho desconfiando dos outros tão cegamente assim)
+//se foi eu que fiz, mas enfim saindo dessa coisa que eu escrevi, aqui tem as funções que se concetam ao back
 
 const url = 'https://projetodesemburacateresinaapi-production-1abf.up.railway.app'
+
+function ErroNoEnvio(){
+      document.querySelector('.popupnaoenvio').style.visibility = 'visible';
+      document.querySelector('.popupnaoenvio').style.display = 'flex';
+      document.querySelector('.fundoescuro').style.visibility = 'visible';
+      document.querySelector('.fundoescuro').style.display = 'flex';
+
+      LimpezadeForm()
+      resetTodos()
+
+}
 
 export async function RevesaoGeografica(lon, lat){
 
@@ -309,7 +329,7 @@ console.log('Deu CERTO, OLHA O DRIVE')
 }
 
 
-}catch (e){console.log('Erro: ', e )}
+}catch (e){ErroNoEnvio()}
 };
 
 export async function PostBancoDeDados(data,categoria,observacao,imagem,lon,lat,rua,bairro) {
@@ -346,7 +366,7 @@ const NovaEntrada = {
     
 
 
-  }catch(e){console.log('Erro:' ,e)}
+  }catch(e){ErroNoEnvio()}
 };
 
 function normalizarDataParaPostgres(dataString) {

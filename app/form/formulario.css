@@ -6,7 +6,7 @@ body {
 }
 
 .fundoescuro{
-  visibility: hidden;
+visibility: hidden;
   display: none; 
   position: fixed;
   top: 0; left: 0;
@@ -42,6 +42,39 @@ body {
     color: #333; 
     font-family: 'Segoe UI';
     font-size: 1.8em; 
+    margin-bottom: 20px; 
+}
+
+.popupnaoenvio {
+    background-color: #ffffff; 
+    position: fixed; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50% -50%);
+    border: 1px solid #fdb710;
+    border-radius: 15px; 
+    padding: 30px 40px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    text-align: center; 
+    min-width: 300px; 
+    display: none;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+
+}
+
+.popupnaoenvio h2 {
+    color: #000000; 
+    font-family: 'Segoe UI';
+    font-size: 1.8em; 
+    margin-bottom: 20px; 
+}
+
+.popupnaoenvio h1 {
+    color: #ff0000; 
+    font-family: 'Segoe UI';
+    font-size: 2.0em; 
     margin-bottom: 20px; 
 }
 
@@ -156,8 +189,6 @@ body {
   color: #000;
 
 }
-
-
 
 .textoDaBarra {
     color: #333;
