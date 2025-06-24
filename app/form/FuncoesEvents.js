@@ -25,7 +25,8 @@ document.getElementById('form-denuncia').addEventListener('submit', (Entrada) =>
             const formulario = document.getElementById('form-denuncia')
             var categoria = null
 
-            if(formulario.size.value == "small"){categoria = 1}else{if(formulario.size.value == "medium"){categoria = 2}else{if(formulario.size.value== "large"){categoria = 3}}}
+            if(formulario.size.value == "small"){categoria = 3}else{if(formulario.size.value == "medium"){categoria = 4}else{if(formulario.size.value == "large"){categoria = 5}}}
+            if(formulario.risk.value == "smal"){categoria = categoria + 3}else{if(formulario.risk.value == "medium"){categoria = categoria + 4}else{if(formulario.risk.value == "large") categoria = categoria + 5}}
 
             console.log("Arquivo selecionado:", arquivo.files.length);
             console.log("Camera selecionada:", camera.files.length);

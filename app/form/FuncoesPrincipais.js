@@ -2,7 +2,9 @@ export function PreparandoEnvioOFF(){
 
     const formulario =  document.getElementById("form-denuncia");
     var categoria = null
-    if(formulario.size.value == "small"){categoria = 1}else{if(formulario.size.value == "medium"){categoria = 2}else{if(formulario.size.value == "large"){categoria = 3}}}
+
+    if(formulario.size.value == "small"){categoria = 3}else{if(formulario.size.value == "medium"){categoria = 4}else{if(formulario.size.value == "large"){categoria = 5}}}
+    if(formulario.risk.value == "smal"){categoria = categoria + 3}else{if(formulario.risk.value == "medium"){categoria = categoria + 4}else{if(formulario.risk.value == "large") categoria = categoria + 5}}
 
     const dadosAseremSalvos = {
         
@@ -201,7 +203,7 @@ export function resetTodos() {
 
 export function LimpezadeForm(){
    const formulario = document.getElementById('form-denuncia')
-      formulario.location.value = ""
+      formulario.risk.value = ""
       formulario.size.value = ""
       formulario.description.value = ""
       document.getElementById('camera').value = ""; 
@@ -257,11 +259,14 @@ export function loopDeAnim(contador,texto){
                     
 };
 
+
+const url = 'https://projetodesemburacateresinaapi-production-1abf.up.railway.app'
+
 export async function RevesaoGeografica(lon, lat){
 
 try{
   
-  const response = await fetch(`https://projetodesemburacateresinaapi-production-1abf.up.railway.app/reversao-geografica?lat=${lat}&lon=${lon}`);
+  const response = await fetch(url+`/reversao-geografica?lat=${lat}&lon=${lon}`);
 
   if(!response.ok){throw new Error ('Reversão geografica eu vou lhe pegar')};
 
@@ -293,7 +298,7 @@ const formData = new FormData()
 
 formData.append('file',ImagemFoto)
 try{
-const resposta = await fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/upload',{
+const resposta = await fetch(url+'/upload',{
   method:'POST',
   body:formData
 })
@@ -330,7 +335,7 @@ const NovaEntrada = {
 
   try {
 
-    const resposta = await fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/registro',{
+    const resposta = await fetch(url+'/registro',{
       method:'POST',headers : {'Content-Type' :'application/json'},
       body: JSON.stringify(NovaEntrada)
     })

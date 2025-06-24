@@ -38,8 +38,13 @@
             <h2>Formulário de Denúncia</h2>
             
             <div class="form-group">
-                <label for="location">Localização:</label>
-                <input type="text" id="location" name="location" placeholder="Digite o endereço do buraco" required>
+                 <label for="risk">Risco :</label>
+                    <select id="risk" name="risk" required>
+                    <option value="">Selecione o local</option>
+                    <option value="small">Na calçada (risco pequeno)</option>
+                    <option value="medium">Na Lateral da rua (risco medio)</option>
+                    <option value="large">No meio da rua (risco grande)</option>
+                </select>
             </div>
 
             <div class="form-group">
