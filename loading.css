@@ -26,7 +26,7 @@ img{
     height: 30vh;
     position: fixed;
     top: 1.5rem;
-    animation: scale 4s infinite linear;
+    animation: scale 4s infinite linear ;
 
 }
 
@@ -47,15 +47,15 @@ img{
 @keyframes spin {
     0%{
         height: 120px;
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
     }
     50%{
         height: 150px;
-        transform: rotate(360);
+        transform: rotate(-360);
     }
     100%{
         height: 120Px;
-        transform: rotate(360);
+        transform: rotate(-360);
 
     }
     
