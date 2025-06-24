@@ -1,4 +1,4 @@
-import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim,LimpezadeForm,LeituraPelaCamera} from './FuncoesPrincipais.js'
+import {PreparandoEnvioOFF,tentarEnviar,LeituraDefoto,RevesaoGeografica, DriveUploader,PostBancoDeDados,loopDeAnim,LimpezadeForm} from './FuncoesPrincipais.js'
 
 window.esperandoConc =  localStorage.getItem('SerReiniciar')
 window.lat2 = null;
@@ -97,7 +97,7 @@ document.getElementById('camera').addEventListener('change', (Entrada) => {
             const arquivo = document.getElementById('iconephoto')
             document.getElementById('photo').value = ""; 
             arquivo.innerText = "📁 Colocar Foto da Galeria"
-            LeituraPelaCamera(Entrada)
+            LeituraDefoto(Entrada)
 });
 
 document.getElementById('fecharenvio').addEventListener('click',() =>{
