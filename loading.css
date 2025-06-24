@@ -46,15 +46,14 @@ img{
 
 @keyframes spin {
     0%{
-        height: 120px;
         transform: rotate(-360deg);
     }
     50%{
-        height: 150px;
+ 
         transform: rotate(-360);
     }
     100%{
-        height: 120Px;
+
         transform: rotate(-360);
 
     }
