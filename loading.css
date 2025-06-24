@@ -22,8 +22,8 @@ body{
 
 img{
 
-    opacity: 0.6;
-    height: 30vh;
+    opacity: 0.9;
+    height: 35vh;
     position: fixed;
     top: 1.5rem;
     animation: scale 4s infinite linear ;
@@ -33,10 +33,10 @@ img{
 
 @keyframes scale {
     50%{
-        transform: scale(1.10);
+        transform: scale(1.1);
     }
     50%{
-        transform: scale(0.9);
+        transform: scale(0.97);
 
     }
    
