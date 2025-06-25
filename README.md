@@ -98,12 +98,6 @@ O projeto utiliza APIs externas que requerem configuração:
 - Sincronização automática quando online
 - Interface adaptativa para status de conexão
 
-### Acessibilidade
-
-- Suporte para diferentes tipos de daltonismo
-- Interface responsiva para dispositivos móveis
-- Navegação por teclado
-
 ## 👥 Equipe de Desenvolvimento
 
 | Nome                            | Função             |
