@@ -166,7 +166,7 @@ window.addEventListener('offline', () => {
 
 window.addEventListener('onload', () =>{
     const butao = document.querySelector('.submit-btn');
-    if(localStorage.getItem(SerReiniciar) === false){tentarEnviar();}else{butao.disabled = true;var contador = 0;oopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
+    if(localStorage.getItem(SerReiniciar) === false){tentarEnviar();}else{butao.disabled = true;var contador = 0;loopDeAnim(contador,"Denuncia Salva, esperando conecção com a internter para finalizar a denuncia")
     }
 
 });
