@@ -13,7 +13,7 @@ O **Desemburaca Teresina** é uma plataforma que facilita a comunicação entre 
 - 📍 **Geolocalização precisa** dos problemas reportados
 - 🗺️ **Validação geográfica** para área de Teresina
 - 💾 **Armazenamento offline** para envio posterior
-- 
+
 ## 🛠️ Tecnologias Utilizadas
 
 ### Frontend
