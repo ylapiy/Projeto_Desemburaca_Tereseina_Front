@@ -13,10 +13,7 @@ O **Desemburaca Teresina** é uma plataforma que facilita a comunicação entre 
 - 📍 **Geolocalização precisa** dos problemas reportados
 - 🗺️ **Validação geográfica** para área de Teresina
 - 💾 **Armazenamento offline** para envio posterior
-- 📊 **Visualização de denúncias** em tempo real
-- 🔄 **Sistema de acompanhamento** do status das denúncias
-- ♿ **Recursos de acessibilidade** para daltonismo
-
+- 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Frontend
@@ -30,6 +27,7 @@ O **Desemburaca Teresina** é uma plataforma que facilita a comunicação entre 
 ### Backend/APIs
 
 - **Repositorio com o back** - https://github.com/ditimon01/Projeto_Desemburaca_Teresina_API
+- **Repositorio com a pagina do Banco de Dados** - https://github.com/ylapiy/PaginaDesenvolver-DesemburacaTeresina.git
 - **LocationIQ API** - Geocodificação reversa
 - **Railway** - Hospedagem da API
 - **Google Drive API** - Armazenamento de imagens
@@ -50,6 +48,7 @@ desemburaca-teresina/
 │   ├── images/         # Imagens do projeto
 │   └── icons/          # Ícones da interface
 ├── index.html          # Redirecionamento inicial
+├── loading.css         # Css para tela de carregaemnto
 ├── Documentação.pdf    # Documentação das princiapis partes do codigo
 └── README.md
 
